@@ -1,0 +1,17 @@
+# Dossier de développement - à exclure de la production
+public/dev/
+
+# Fichiers système macOS (optionnel)
+.DS_Store
+
+# Dossier node_modules (optionnel, souvent déjà ignoré)
+node_modules/
+
+# Fichiers de log (optionnel)
+*.log
+
+# Fichiers IDE (optionnel)
+.idea/
+.vscode/
+*.swp
+*.swo

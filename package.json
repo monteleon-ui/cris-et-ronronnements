@@ -1,5 +1,12 @@
 {
+  "name": "cris-et-ronronnements",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
   "dependencies": {
+    "express": "^4.22.2",
     "gray-matter": "^4.0.3",
     "marked": "^18.0.5"
   }
