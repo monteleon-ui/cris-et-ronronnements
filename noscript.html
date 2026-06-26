@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>JavaScript requis - Cris et Ronronnements</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Votre CSS personnalisé -->
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.min.css">
+
+    <!-- Style spécifique pour cette page -->
+    <style>
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+
+        .noscript-card {
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border: none;
+        }
+
+        .noscript-card .card-header {
+            background-color: #6f42c1; /* Violet pour correspondre à votre thème */
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+        }
+
+        .noscript-card .card-body {
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .noscript-icon {
+            font-size: 5rem;
+            color: #6f42c1;
+            margin-bottom: 1.5rem;
+        }
+
+        .browser-logos {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+        }
+
+        .browser-logos img {
+            height: 40px;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+        }
+
+        .browser-logos img:hover {
+            opacity: 1;
+        }
+
+        .accordion-button:not(.collapsed) {
+            background-color: #f8f9fa;
+            color: #495057;
+        }
+
+        .btn-custom {
+            background-color: #6f42c1;
+            border-color: #6f42c1;
+            margin-top: 1rem;
+        }
+
+        .btn-custom:hover {
+            background-color: #5a32a8;
+            border-color: #5a32a8;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="noscript-card card">
+            <div class="card-header">
+                <h2 class="mb-0">Cris et Ronronnements</h2>
+            </div>
+            <div class="card-body">
+                <!-- Icône principale -->
+                <div class="noscript-icon">
+                    <i class="bi bi-exclamation-triangle-fill"></i>
+                </div>
+
+                <!-- Titre et message principal -->
+                <h3>JavaScript est désactivé</h3>
+                <p class="lead my-3">
+                    Pour accéder à toutes les fonctionnalités de ce site,
+                    <strong>JavaScript doit être activé</strong> dans votre navigateur.
+                </p>
+
+                <!-- Logos des navigateurs -->
+                <div class="browser-logos">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/52/Safari_browser_logo.svg" alt="Safari" title="Safari">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" alt="Edge" title="Microsoft Edge">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e1/Google_Chrome_icon_%28February_2022%29.svg" alt="Chrome" title="Google Chrome">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a0/Firefox_logo%2C_2019.svg" alt="Firefox" title="Mozilla Firefox">
+                </div>
+
+                <!-- Instructions par navigateur -->
+                <div class="accordion mt-4" id="browserInstructions">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#safari" aria-expanded="false" aria-controls="safari">
+                                <i class="bi bi-apple me-2"></i> Safari (Mac/iOS)
+                            </button>
+                        </h2>
+                        <div id="safari" class="accordion-collapse collapse" data-bs-parent="#browserInstructions">
+                            <div class="accordion-body text-start">
+                                <ol>
+                                    <li>Ouvrez <strong>Safari</strong>.</li>
+                                    <li>Dans la barre de menu, cliquez sur <strong>Safari > Préférences</strong>.</li>
+                                    <li>Allez dans l'onglet <strong>Sécurité</strong>.</li>
+                                    <li>Cochez la case <strong>Activer JavaScript</strong>.</li>
+                                    <li>Actualisez cette page.</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#chrome" aria-expanded="false" aria-controls="chrome">
+                                <i class="bi bi-google me-2"></i> Chrome / Edge (Windows/Mac)
+                            </button>
+                        </h2>
+                        <div id="chrome" class="accordion-collapse collapse" data-bs-parent="#browserInstructions">
+                            <div class="accordion-body text-start">
+                                <ol>
+                                    <li>Ouvrez <strong>Chrome</strong> ou <strong>Edge</strong>.</li>
+                                    <li>Cliquez sur les trois points (<strong>⋮</strong>) en haut à droite.</li>
+                                    <li>Sélectionnez <strong>Paramètres</strong>.</li>
+                                    <li>Allez dans <strong>Confidentialité et sécurité > Paramètres du site > JavaScript</strong>.</li>
+                                    <li>Sélectionnez <strong>Autorisé</strong>.</li>
+                                    <li>Actualisez cette page.</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#firefox" aria-expanded="false" aria-controls="firefox">
+                                <i class="bi bi-firefox me-2"></i> Firefox
+                            </button>
+                        </h2>
+                        <div id="fire

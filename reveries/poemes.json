@@ -1,0 +1,28 @@
+{
+  "auteurs": [
+    {
+      "nom": "Valkirit",
+      "description": "Poétesse des émotions et de la nature.",
+      "livres": [
+        {
+          "titre": "1980",
+          "description": "Les débuts",
+          "poemes": [
+            {
+              "id": "Valkirit_1980_1",
+              "titre": "Dans sa chambre il y a une étoile",
+              "contenu": "Dans sa chambre il y a une étoile\nQui brille sur la belle toile,\nQui éclaire tout son petit cœur\nQuand il est sombre de malheur.\n\nDans la nuit elle éclaire aussi\nMalgré toutes les intempéries\nDe l’humeur de son petit cœur\nQui s’étire de bonheur.",
+              "annee": "15 janvier 1980"
+            },
+            {
+              "id": "Valkirit_1980_2",
+              "titre": "Tout est fini",
+              "contenu": "Tout est fini.\nTout est fichu.\n\nToi la star déchue,\nToi la reine de l’infini,\nQu’es-tu donc devenue ?\n\nTes cheveux qui furent si blonds\nSont aujourd’hui vieillis.\nTon corps si beau, si satiné\nEst maintenant détruit.\nTes mains si douces, si fines\nSont devenues creux et boursouflures.\nMême la douceur de tes yeux a vieilli.\n\nDieu après avoir créé la perfection de la beauté,\nRemets son œuvre à la vieillesse,\nL’impitoyable vieillesse.",
+              "annee": "12 juin 1980"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

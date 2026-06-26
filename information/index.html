@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <noscript>
+    <meta http-equiv="refresh" content="0; url=/noscript.html">
+</noscript>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Espace Information - Cris et Ronronnements : articles et ressources sur les chats.">
+    <title>Espace Information - Cris et Ronronnements</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="../assets/images/favicon.ico" type="image/x-icon">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.min.css">
+</head>
+
+<body class="container-fluid">
+    <!-- Inclusion de l'en-tête -->
+    <div id="header-placeholder"></div>
+
+    <!-- Contenu principal de la page -->
+    <main class="container my-4">
+        <!-- Votre contenu ici -->
+    </main>
+
+    <!-- Inclusion du pied de page -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Script pour charger l'en-tête et le pied de page -->
+    <script>
+        // Détermine la racine du site
+        const SITE_ROOT = window.location.pathname.split('/')[1] === 'cris-et-ronronnements' ? '/cris-et-ronronnements/' : '/';
+
+        // Charger l'en-tête
+        fetch(SITE_ROOT + 'header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-placeholder').innerHTML = data;
+            })
+            .catch(error => {
+                console.error('Erreur lors du chargement de l\'en-tête :', error);
+                // Fallback : afficher un en-tête minimal
+                document.getElementById('header-placeholder').innerHTML = `
+                    <header class="bg-light py-3 mb-4 border-bottom">
+                        <div class="container text-center">
+                            <h1>Cris et Ronronnements</h1>
+                            <nav class="nav justify-content-center">
+                                <a class="nav-link" href="/index.html">Accueil</a>
+                                <a class="nav-link" href="/information/index.html">Information</a>
+                                <a class="nav-link" href="/formation/index.html">Formation</a>
+                                <a class="nav-link" href="/questionnaire/index.html">Questionnaire</a>
+                            </nav>
+                        </div>
+                    </header>
+                `;
+            });
+
+        // Charger le pied de page
+        fetch(SITE_ROOT + 'footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-placeholder').innerHTML = data;
+            })
+            .catch(error => {
+                console.error('Erreur lors du chargement du pied de page :', error);
+                document.getElementById('footer-placeholder').innerHTML = `
+                    <footer class="bg-light py-3 border-top fixed-bottom">
+                        <div class="container text-center">
+                            <p class="mb-0">&copy; 2026 Cris et Ronronnements</p>
+                        </div>
+                    </footer>
+                `;
+            });
+    </script>
+
+    <!-- Bootstrap JS (si nécessaire) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+    <!-- Contenu principal -->
+    <main class="container my-4">
+        <article>
+            <h2>Espace Information</h2>
+            <p class="lead">Retrouvez ici des articles détaillés sur les comportements félins.</p>
+
+            <section class="my-4">
+                <h3>Thèmes disponibles</h3>
+                <div class="list-group">
+                    <a href="theme1.html" class="list-group-item list-group-item-action">Thème 1 : Pourquoi les chats ronronnent-ils ?</a>
+                    <a href="theme2.html" class="list-group-item list-group-item-action">Thème 2 : Comment les chats communiquent-ils ?</a>
+                    <a href="theme3.html" class="list-group-item list-group-item-action">Thème 3 : Les signes de bien-être chez un chat</a>
+                </div>
+            </section>
+        </article>
+    </main>
+</body>
+</html>

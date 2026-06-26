@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <noscript>
+    <meta http-equiv="refresh" content="0; url=/noscript.html">
+</noscript>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Mentions légales du site Cris et Ronronnements - Informations juridiques et RGPD.">
+    <title>Mentions légales - Cris et Ronronnements</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Votre CSS personnalisé -->
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.min.css">
+</head>
+
+<body class="container-fluid">
+    <!-- Inclusion de l'en-tête -->
+    <div id="header-placeholder"></div>
+
+    <!-- Contenu principal de la page -->
+    <main class="container my-4">
+        <!-- Votre contenu ici -->
+    </main>
+
+    <!-- Inclusion du pied de page -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Script pour charger l'en-tête et le pied de page -->
+    <script>
+        // Détermine la racine du site
+        const SITE_ROOT = window.location.pathname.split('/')[1] === 'cris-et-ronronnements' ? '/cris-et-ronronnements/' : '/';
+
+        // Charger l'en-tête
+        fetch(SITE_ROOT + 'header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-placeholder').innerHTML = data;
+            })
+            .catch(error => {
+                console.error('Erreur lors du chargement de l\'en-tête :', error);
+                // Fallback : afficher un en-tête minimal
+                document.getElementById('header-placeholder').innerHTML = `
+                    <header class="bg-light py-3 mb-4 border-bottom">
+                        <div class="container text-center">
+                            <h1>Cris et Ronronnements</h1>
+                            <nav class="nav justify-content-center">
+                                <a class="nav-link" href="/index.html">Accueil</a>
+                                <a class="nav-link" href="/information/index.html">Information</a>
+                                <a class="nav-link" href="/formation/index.html">Formation</a>
+                                <a class="nav-link" href="/questionnaire/index.html">Questionnaire</a>
+                            </nav>
+                        </div>
+                    </header>
+                `;
+            });
+
+        // Charger le pied de page
+        fetch(SITE_ROOT + 'footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-placeholder').innerHTML = data;
+            })
+            .catch(error => {
+                console.error('Erreur lors du chargement du pied de page :', error);
+                document.getElementById('footer-placeholder').innerHTML = `
+                    <footer class="bg-light py-3 border-top fixed-bottom">
+                        <div class="container text-center">
+                            <p class="mb-0">&copy; 2026 Cris et Ronronnements</p>
+                        </div>
+                    </footer>
+                `;
+            });
+    </script>
+
+    <!-- Bootstrap JS (si nécessaire) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Contenu principal -->
+    <main class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-primary text-white">
+                        <h2 class="h4 mb-0 text-center">Mentions légales</h2>
+                    </div>
+                    <div class="card-body">
+                        <section class="mb-4">
+    <h3><i class="bi bi-envelope me-2"></i> Contact</h3>
+    <p>
+        Pour toute question ou demande d'information concernant ce site ou les mentions légales,
+        vous pouvez contacter Simon Vitsonnet via sa page de contact :
+    </p>
+    <div class="text-center mt-3">
+        <a href="https://simonvitsonnet.com/contact/" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
+            <i class="bi bi-box-arrow-up-right me-2"></i> Contacter Simon Vitsonnet
+        </a>
+    </div>
+</section>
+
+                        <section class="mb-4">
+                            <h3><i class="bi bi-globe me-2"></i> Hébergement</h3>
+                            <p>
+                                <strong>Hébergeur :</strong> Planethoster<br>
+                                <strong>Adresse :</strong> 4416 Louis-B.-Mayer, Laval, Québec H7P 0G1, Canada<br>
+                                <strong>Site web :</strong> <a href="https://www.planethoster.com" target="_blank">https://www.planethoster.com</a>
+                            </p>
+                        </section>
+
+                        <section class="mb-4">
+                            <h3><i class="bi bi-file-earmark-text me-2"></i> Conditions d'utilisation</h3>
+                            <p>
+                                L'utilisation du site <strong>Cris et Ronronnements</strong> implique l'acceptation pleine et entière des conditions générales d'utilisation décrites ci-dessous.
+                                Ces conditions d'utilisation sont susceptibles d'être modifiées ou complétées à tout moment.
+                            </p>
+                            <p>
+                                Le site est accessible gratuitement à tout utilisateur d'Internet. Tout utilisateur du site reconnaît avoir pris connaissance des présentes mentions légales et s'engage à les respecter.
+                            </p>
+                        </section>
+
+                        <section class="mb-4">
+                            <h3><i class="bi bi-shield-fill-check me-2"></i> Données personnelles et RGPD</h3>
+                            <p>
+                                Ce site ne collecte <strong>aucune donnée personnelle</strong> de manière active. Les réponses au questionnaire sont sauvegardées <strong>localement dans votre navigateur</strong> (via <code>localStorage</code>) et ne sont <strong>jamais transmises à un serveur</strong>.
+                            </p>
+                            <p>
+                                Conformément au <strong>Règlement Général sur la Protection des Données (RGPD)</strong>, vous disposez des droits suivants :
+                                <ul>
+                                    <li>Droit d'accès à vos données (article 15 RGPD) ;</li>
+                                    <li>Droit de rectification (article 16 RGPD) ;</li>
+                                    <li>Droit à l'effacement (article 17 RGPD) ;</li>
+                                    <li>Droit à la limitation du traitement (article 18 RGPD) ;</li>
+                                    <li>Droit à la portabilité (article 20 RGPD) ;</li>
+                                    <li>Droit d'opposition (article 21 RGPD).</li>
+                                </ul>
+                            </p>
+                            <p>
+                                Pour exercer ces droits, vous pouvez contacter l'éditeur du site à l'adresse email indiquée ci-dessus.
+                            </p>
+                        </section>
+
+                        <section class="mb-4">
+                            <h3><i class="bi bi-cookie me-2"></i> Cookies</h3>
+                            <p>
+                                Ce site <strong>n'utilise aucun cookie</strong> pour le suivi des utilisateurs. Seuls des cookies techniques strictement nécessaires au fonctionnement du site (ex: session) peuvent être utilisés.
+                            </p>
+                        </section>
+
+                        <section class="mb-4">
+                            <h3><i class="bi bi-c-circle me-2"></i> Propriété intellectuelle</h3>
+                            <p>
+                                Tous les contenus du site (textes, images, logos, etc.) sont la propriété de <strong>Pierre-Yves Montéléon</strong> ou de leurs auteurs respectifs.
+                            </p>
+                            <p>
+                                Toute reproduction, représentation, modification, publication, adaptation de tout ou partie des éléments du site, quel que soit le moyen ou le procédé utilisé, est interdite, sauf autorisation écrite préalable de l'éditeur.
+                            </p>
+                        </section>
+
+                        <section class="mb-4">
+                            <h3><i class="bi bi-exclamation-triangle me-2"></i> Limitation de responsabilité</h3>
+                            <p>
+                                Les informations et contenus proposés sur ce site sont fournis à titre indicatif et ne sauraient engager la responsabilité de l'éditeur.
+                            </p>
+                            <p>
+                                L'éditeur ne pourra en aucun cas être tenu responsable des dommages directs ou indirects (tels que, notamment, la perte de données, l'interruption de service, etc.) découlant de l'utilisation du site ou de l'impossibilité d'y accéder.
+                            </p>
+                        </section>
+
+                        <section class="mb-4">
+                            <h3><i class="bi bi-link me-2"></i> Liens hypertextes</h3>
+                            <p>
+                                Le site <strong>Cris et Ronronnements</strong> peut contenir des liens hypertextes pointant vers d'autres sites web. L'éditeur ne peut en aucun cas être tenu responsable du contenu de ces sites ou des liens qu'ils contiennent.
+                            </p>
+                        </section>
+
+                        <section class="mb-4">
+                            <h3><i class="bi bi-envelope me-2"></i> Contact</h3>
+                            <p>
+                                Pour toute question ou demande d'information concernant les mentions légales, vous pouvez contacter l'éditeur du site à l'adresse email suivante :
+                                <strong>[Votre email de contact]</strong>.
+                            </p>
+                        </section>
+
+                        <div class="text-center mt-4">
+                            <p><em>Dernière mise à jour : 24 juin 2026</em></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
