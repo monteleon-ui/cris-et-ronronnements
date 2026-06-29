@@ -2,7 +2,7 @@
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
-const parentalConfig = require('./server/config/parental-control');
+const parentalConfig = require('./server/config/parental-control.js');
 
 const app = express();
 
@@ -26,34 +26,34 @@ function parentalControlMiddleware(req, res, next) {
     if (!parentalConfig.enabled) {
         return next();
     }
-    
+
     // Vérifier si la route est exclue
-    const isExcluded = parentalConfig.excludedRoutes.some(route => 
+    const isExcluded = parentalConfig.excludedRoutes.some(route =>
         req.path.startsWith(route) || req.path === route
     );
-    
+
     if (isExcluded) {
         return next();
     }
-    
+
     // Vérifier si la route est protégée
-    const isProtected = parentalConfig.protectedRoutes.some(route => 
+    const isProtected = parentalConfig.protectedRoutes.some(route =>
         req.path.startsWith(route) || req.path === route.slice(0, -1)
     );
-    
+
     // Si ce n'est pas une route protégée, continuer
     if (!isProtected) {
         return next();
     }
-    
+
     // Vérifier le cookie de vérification d'âge
     if (req.cookies[parentalConfig.cookieName] === 'true') {
         return next();
     }
-    
-    // Stocker l'URL de redirection
-    const redirectUrl = req.originalUrl;
-    
+
+    // Stocker l'URL de redirection (avec une valeur par défaut)
+    const redirectUrl = req.originalUrl || '/';
+
     // Rediriger vers la page de contrôle parental
     res.redirect(`/controle-parental?redirect=${encodeURIComponent(redirectUrl)}`);
 }
@@ -89,39 +89,39 @@ app.get('/legal/contact', (req, res) => {
 // Route pour vérifier l'âge (API)
 app.post('/api/verify-age', (req, res) => {
     const { birthYear } = req.body;
-    
+
     if (!birthYear) {
-        return res.status(400).json({ 
-            success: false, 
-            message: 'L\'année de naissance est requise' 
+        return res.status(400).json({
+            success: false,
+            message: 'L\'année de naissance est requise'
         });
     }
-    
+
     const currentYear = new Date().getFullYear();
     const age = currentYear - parseInt(birthYear);
-    
+
     if (age >= parentalConfig.minAge) {
         // Définir le cookie
         res.cookie(
-            parentalConfig.cookieName, 
-            'true', 
+            parentalConfig.cookieName,
+            'true',
             {
                 maxAge: parentalConfig.cookieMaxAge * 24 * 60 * 60 * 1000,
                 ...parentalConfig.cookieOptions,
                 path: '/'
             }
         );
-        
-        return res.json({ 
-            success: true, 
+
+        return res.json({
+            success: true,
             message: 'Vérification réussie',
-            age: age 
+            age: age
         });
     } else {
-        return res.status(403).json({ 
-            success: false, 
+        return res.status(403).json({
+            success: false,
             message: `Vous devez avoir au moins ${parentalConfig.minAge} ans`,
-            age: age 
+            age: age
         });
     }
 });
@@ -129,7 +129,7 @@ app.post('/api/verify-age', (req, res) => {
 // Route pour vérifier le statut de vérification
 app.get('/api/check-age-verification', (req, res) => {
     const isVerified = req.cookies[parentalConfig.cookieName] === 'true';
-    res.json({ 
+    res.json({
         verified: isVerified,
         minAge: parentalConfig.minAge
     });
@@ -146,10 +146,10 @@ app.post('/api/clear-age-verification', (req, res) => {
 // Middleware pour gérer les erreurs 404
 app.use((req, res, next) => {
     res.status(404);
-    
+
     // Essayer de rendre la page d'erreur 404
     try {
-        res.render('errors/404', { 
+        res.render('errors/404', {
             title: 'Page non trouvée',
             message: 'La page que vous cherchez n\'existe pas.'
         });
@@ -163,9 +163,9 @@ app.use((req, res, next) => {
 app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500);
-    
+
     try {
-        res.render('errors/500', { 
+        res.render('errors/500', {
             title: 'Erreur serveur',
             message: 'Une erreur est survenue. Veuillez réessayer plus tard.'
         });
