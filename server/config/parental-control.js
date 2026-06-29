@@ -26,11 +26,11 @@ module.exports = {
     // Routes exclues du contrôle parental
     // Ces routes sont toujours accessibles
     excludedRoutes: [
-        '/controle-parental.html',
-        '/index.html',
+        '/controle-parental',
+        '/',
+        '/index',
         '/assets/',
-        '/tech/',
-        '/mentions/',
+        '/legal/',
         '/api/'
     ],
     
