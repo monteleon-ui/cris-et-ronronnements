@@ -3,40 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title><%= title || 'Cris et Ronronnements' %></title>
-    
-    <!-- Favicon -->
     <link rel="icon" href="/assets/images/favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
-    
-    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="/assets/Bootstrap/css/bootstrap.min.css">
-    
-    <!-- Custom CSS -->
     <link rel="stylesheet" href="/assets/css/style.css">
-    
-    <!-- Noscript content -->
-    <noscript>
-        <%- include('../partials/noscript') %>
-    </noscript>
 </head>
 <body>
-    <!-- Header -->
     <%- include('../partials/header') %>
-    
-    <!-- Main Content -->
+
+    <!-- Contenu dynamique -->
     <main>
-        <%- body %>
+        <% if (locals.body) { %>
+            <%- body %>
+        <% } %>
     </main>
-    
-    <!-- Footer -->
+
     <%- include('../partials/footer') %>
-    
-    <!-- Bootstrap JS Bundle (includes Popper) -->
+
     <script src="/assets/Bootstrap/js/bootstrap.bundle.min.js"></script>
-    
-    <!-- Parental Control Script -->
-    <script src="/assets/js/parental-control.js"></script>
 </body>
 </html>
