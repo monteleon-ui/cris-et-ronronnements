@@ -1,96 +1,94 @@
-<!-- Page: contact.ejs -->
-<%- include('../../layouts/main', { 
+<%- include('../../layouts/main', {
     title: 'Contact - Cris et Ronronnements',
-    body: function() { %>
-
-<div class="container my-5">
-    <div class="row justify-content-center">
-        <div class="col-lg-8">
-            <div class="card shadow">
-                <div class="card-header bg-primary text-white">
-                    <h1 class="card-title h3 mb-0 text-center">Contact</h1>
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                        <!-- Formulaire de contact -->
-                        <div class="col-md-6">
-                            <h2 class="h4 mb-4">Envoyez-nous un message</h2>
-                            <form id="contactForm">
-                                <div class="mb-3">
-                                    <label for="name" class="form-label">Nom</label>
-                                    <input type="text" class="form-control" id="name" name="name" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="email" class="form-label">Email</label>
-                                    <input type="email" class="form-control" id="email" name="email" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="subject" class="form-label">Sujet</label>
-                                    <select class="form-select" id="subject" name="subject" required>
-                                        <option value="" selected disabled>Sélectionnez un sujet</option>
-                                        <option value="question">Question générale</option>
-                                        <option value="technique">Problème technique</option>
-                                        <option value="contenu">Question sur le contenu</option>
-                                        <option value="autre">Autre</option>
-                                    </select>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="message" class="form-label">Message</label>
-                                    <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
-                                </div>
-                                <button type="submit" class="btn btn-primary w-100">
-                                    <i class="bi bi-send me-2"></i> Envoyer
-                                </button>
-                            </form>
+    body: `
+        <div class="container my-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="card shadow">
+                        <div class="card-header bg-primary text-white">
+                            <h1 class="card-title h3 mb-0 text-center">Contact</h1>
                         </div>
-                        
-                        <!-- Informations de contact -->
-                        <div class="col-md-6">
-                            <h2 class="h4 mb-4">Informations de contact</h2>
-                            <address>
-                                <strong>Éditeur :</strong> Simon Vitsonnet<br>
-                                <strong>Email :</strong> <a href="mailto:contact@simonvitsonnet.com">contact@simonvitsonnet.com</a><br>
-                                <strong>Site web :</strong> <a href="https://simonvitsonnet.com" target="_blank">simonvitsonnet.com</a>
-                            </address>
-                            
-                            <h3 class="h5 mt-4">Réseaux sociaux</h3>
-                            <div class="d-flex gap-3">
-                                <a href="#" class="btn btn-outline-primary" title="Facebook">
-                                    <i class="bi bi-facebook"></i>
-                                </a>
-                                <a href="#" class="btn btn-outline-primary" title="Twitter">
-                                    <i class="bi bi-twitter"></i>
-                                </a>
-                                <a href="#" class="btn btn-outline-primary" title="Instagram">
-                                    <i class="bi bi-instagram"></i>
-                                </a>
+                        <div class="card-body">
+                            <div class="row">
+                                <!-- Formulaire de contact -->
+                                <div class="col-md-6">
+                                    <h2 class="h4 mb-4">Envoyez-nous un message</h2>
+                                    <form id="contactForm">
+                                        <div class="mb-3">
+                                            <label for="name" class="form-label">Nom</label>
+                                            <input type="text" class="form-control" id="name" name="name" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="email" class="form-label">Email</label>
+                                            <input type="email" class="form-control" id="email" name="email" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="subject" class="form-label">Sujet</label>
+                                            <select class="form-select" id="subject" name="subject" required>
+                                                <option value="" selected disabled>Sélectionnez un sujet</option>
+                                                <option value="question">Question générale</option>
+                                                <option value="technique">Problème technique</option>
+                                                <option value="contenu">Question sur le contenu</option>
+                                                <option value="autre">Autre</option>
+                                            </select>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="message" class="form-label">Message</label>
+                                            <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary w-100">
+                                            <i class="bi bi-send me-2"></i> Envoyer
+                                        </button>
+                                    </form>
+                                </div>
+                                
+                                <!-- Informations de contact -->
+                                <div class="col-md-6">
+                                    <h2 class="h4 mb-4">Informations de contact</h2>
+                                    <address>
+                                        <strong>Éditeur :</strong> Simon Vitsonnet<br>
+                                        <strong>Email :</strong> <a href="mailto:contact@simonvitsonnet.com">contact@simonvitsonnet.com</a><br>
+                                        <strong>Site web :</strong> <a href="https://simonvitsonnet.com" target="_blank">simonvitsonnet.com</a>
+                                    </address>
+                                    
+                                    <h3 class="h5 mt-4">Réseaux sociaux</h3>
+                                    <div class="d-flex gap-3">
+                                        <a href="#" class="btn btn-outline-primary" title="Facebook">
+                                            <i class="bi bi-facebook"></i>
+                                        </a>
+                                        <a href="#" class="btn btn-outline-primary" title="Twitter">
+                                            <i class="bi bi-twitter"></i>
+                                        </a>
+                                        <a href="#" class="btn btn-outline-primary" title="Instagram">
+                                            <i class="bi bi-instagram"></i>
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
-
-<script>
-// Gestion du formulaire de contact (exemple basique)
-document.getElementById('contactForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    // Récupérer les valeurs du formulaire
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const subject = document.getElementById('subject').value;
-    const message = document.getElementById('message').value;
-    
-    // Ici, vous pourriez envoyer les données à un serveur
-    // Pour l'instant, on affiche juste un message
-    alert(`Merci pour votre message, ${name}! Nous vous répondrons bientôt à l'adresse ${email}.`);
-    
-    // Réinitialiser le formulaire
-    this.reset();
-});
-</script>
-
-<% } %>
+        
+        <script>
+        // Gestion du formulaire de contact (exemple basique)
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Récupérer les valeurs du formulaire
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            // Ici, vous pourriez envoyer les données à un serveur
+            // Pour l'instant, on affiche juste un message
+            alert(\`Merci pour votre message, \${name}! Nous vous répondrons bientôt à l'adresse \${email}.\`);
+            
+            // Réinitialiser le formulaire
+            this.reset();
+        });
+        </script>
+    `
+}) %>
