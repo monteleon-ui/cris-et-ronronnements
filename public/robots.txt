@@ -1,0 +1,20 @@
+User-agent: *
+Allow: /
+Sitemap: https://cris-et-ronronnements.net/sitemap.xml
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+# Bloquer les pages d'erreur
+Disallow: /errors/
+
+# Bloquer les fichiers de configuration
+Disallow: /.env
+Disallow: /.git
+Disallow: /node_modules/
