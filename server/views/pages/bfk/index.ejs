@@ -3,7 +3,48 @@
 }) %>
 
 <div class="container my-5">
-    <h1>Projet BFK</h1>
-    <p>Bienvenue dans la section BFK (BDSM, Fetish, Kink).</p>
-    <p>Cette page est en cours de développement.</p>
+    <article aria-labelledby="bfk-title">
+        <h1 id="bfk-title">Projet BFK</h1>
+        <p class="lead">
+            B pour BDSM, F pour Fetish, K pour Kink, et le reste pour tout ce qui ne rentre pas dans ces catégories.
+        </p>
+        
+        <section aria-labelledby="bfk-description-title">
+            <h2 id="bfk-description-title">Description du projet</h2>
+            <p>
+                Le projet BFK propose un questionnaire auto-administré pour explorer vos préférences, 
+                ainsi qu'un dictionnaire des questions pour approfondir vos connaissances.
+            </p>
+        </section>
+        
+        <section aria-labelledby="bfk-features-title">
+            <h2 id="bfk-features-title">Fonctionnalités</h2>
+            <div class="row g-4" role="list">
+                <div class="col-md-6" role="listitem">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h3 class="card-title">Questionnaire</h3>
+                            <p class="card-text">
+                                Un questionnaire organisé en thèmes et groupes de questions. 
+                                Répondez à tout ou seulement aux parties qui vous intéressent.
+                            </p>
+                            <a href="/bfk/questionnaire" class="btn btn-primary" aria-label="Accéder au questionnaire BFK">Commencer le questionnaire</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6" role="listitem">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h3 class="card-title">Dictionnaire</h3>
+                            <p class="card-text">
+                                Un dictionnaire complet des questions, consultable indépendamment du questionnaire. 
+                                Parcourez-le linéairement, par thème, ou aléatoirement.
+                            </p>
+                            <a href="/bfk/dictionnaire" class="btn btn-primary" aria-label="Consulter le dictionnaire BFK">Consulter le dictionnaire</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </article>
 </div>

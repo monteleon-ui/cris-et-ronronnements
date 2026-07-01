@@ -1,12 +1,11 @@
-<!-- Partial: noscript.ejs -->
 <div class="container my-5">
-    <div class="card noscript-card">
-        <div class="card-header bg-primary text-white text-center">
-            <h2 class="mb-0">JavaScript est désactivé</h2>
+    <div class="card" role="alert" aria-live="polite">
+        <div class="card-header bg-warning text-dark text-center">
+            <h2 class="mb-0" id="noscript-title">JavaScript est désactivé</h2>
         </div>
         <div class="card-body text-center">
             <div class="noscript-icon my-3">
-                <i class="bi bi-exclamation-triangle-fill text-primary" style="font-size: 4rem;"></i>
+                <i class="bi bi-exclamation-triangle-fill text-warning" aria-hidden="true" style="font-size: 4rem;"></i>
             </div>
             
             <h3>JavaScript est requis</h3>
@@ -17,12 +16,12 @@
             
             <p class="mb-4">
                 Ce site utilise JavaScript pour offrir une expérience optimale. 
-                Veuillez activer JavaScript et <a href="" onclick="location.reload(); return false;">rafraîchir la page</a>.
+                Veuillez activer JavaScript et <a href="" onclick="location.reload(); return false;" aria-label="Rafraîchir la page">rafraîchir la page</a>.
             </p>
             
             <div class="d-grid gap-2 d-md-block justify-content-md-center">
-                <button class="btn btn-primary btn-custom" onclick="location.reload();">
-                    <i class="bi bi-arrow-clockwise me-2"></i> Rafraîchir la page
+                <button class="btn btn-primary btn-custom" onclick="location.reload();" aria-label="Rafraîchir la page">
+                    <i class="bi bi-arrow-clockwise me-2" aria-hidden="true"></i> Rafraîchir la page
                 </button>
             </div>
         </div>

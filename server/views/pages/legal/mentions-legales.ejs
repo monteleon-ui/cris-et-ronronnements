@@ -1,68 +1,69 @@
 <%- include('../../layouts/main', {
-    title: 'Mentions Légales - Cris et Ronronnements',
-    body: `
-        <div class="container my-5">
-            <div class="row justify-content-center">
-                <div class="col-lg-10">
-                    <h1 class="mb-4">Mentions Légales</h1>
-                    
-                    <section class="mb-5">
-                        <h2>1. Éditeur du site</h2>
-                        <p>
-                            <strong>Nom :</strong> Simon Vitsonnet<br>
-                            <strong>Site web :</strong> <a href="https://simonvitsonnet.com">simonvitsonnet.com</a><br>
-                            <strong>Email :</strong> contact@simonvitsonnet.com
-                        </p>
-                    </section>
-                    
-                    <section class="mb-5">
-                        <h2>2. Hébergement</h2>
-                        <p>
-                            <strong>Hébergeur :</strong> PlanetHoster<br>
-                            <strong>Site web :</strong> <a href="https://www.planethoster.net">planethoster.net</a>
-                        </p>
-                    </section>
-                    
-                    <section class="mb-5">
-                        <h2>3. Propriété intellectuelle</h2>
-                        <p>
-                            Tous les contenus présents sur ce site (textes, images, logos, etc.) sont la propriété de Simon Vitsonnet 
-                            ou de leurs auteurs respectifs. Toute reproduction, représentation, modification, publication, 
-                            adaptation de tout ou partie des éléments du site, quel que soit le moyen ou le procédé utilisé, 
-                            est interdite, sauf autorisation écrite préalable de l'éditeur.
-                        </p>
-                    </section>
-                    
-                    <section class="mb-5">
-                        <h2>4. Responsabilités</h2>
-                        <p>
-                            L'éditeur du site ne saurait être tenu responsable des dommages directs ou indirects subis par l'utilisateur 
-                            du fait de l'utilisation du site ou de tout autre site lié. L'utilisateur s'engage à utiliser le site conformément 
-                            aux lois et règlements en vigueur.
-                        </p>
-                    </section>
-                    
-                    <section class="mb-5">
-                        <h2>5. Données personnelles</h2>
-                        <p>
-                            Ce site ne collecte aucune donnée personnelle sans votre consentement explicite. 
-                            Pour plus d'informations, consultez notre <a href="/legal/politique-confidentialite">Politique de Confidentialité</a>.
-                        </p>
-                    </section>
-                    
-                    <section class="mb-5">
-                        <h2>6. Contenu à caractère adulte</h2>
-                        <p>
-                            Ce site contient du contenu destiné à un public adulte. En accédant à ce site, vous confirmez 
-                            avoir l'âge légal dans votre pays de résidence et accepter les conditions d'utilisation.
-                        </p>
-                    </section>
-                    
-                    <div class="text-center mt-5">
-                        <p class="text-muted">Dernière mise à jour : Juin 2026</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    `
+    title: 'Mentions Légales - Cris et Ronronnements'
 }) %>
+
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <article aria-labelledby="mentions-title">
+                <h1 id="mentions-title">Mentions Légales</h1>
+                
+                <section aria-labelledby="editor-title">
+                    <h2 id="editor-title">1. Éditeur du site</h2>
+                    <p>
+                        <strong>Nom :</strong> Simon Vitsonnet<br>
+                        <strong>Site web :</strong> <a href="https://simonvitsonnet.com" aria-label="Site web de Simon Vitsonnet (nouvelle fenêtre)" target="_blank" rel="noopener noreferrer">simonvitsonnet.com</a><br>
+                        <strong>Email :</strong> <a href="mailto:contact@simonvitsonnet.com" aria-label="Contacter Simon Vitsonnet par email">contact@simonvitsonnet.com</a>
+                    </p>
+                </section>
+                
+                <section aria-labelledby="hosting-title">
+                    <h2 id="hosting-title">2. Hébergement</h2>
+                    <p>
+                        <strong>Hébergeur :</strong> PlanetHoster<br>
+                        <strong>Site web :</strong> <a href="https://www.planethoster.net" aria-label="Site web de PlanetHoster (nouvelle fenêtre)" target="_blank" rel="noopener noreferrer">planethoster.net</a>
+                    </p>
+                </section>
+                
+                <section aria-labelledby="copyright-title">
+                    <h2 id="copyright-title">3. Propriété intellectuelle</h2>
+                    <p>
+                        Tous les contenus présents sur ce site (textes, images, logos, etc.) sont la propriété de Simon Vitsonnet 
+                        ou de leurs auteurs respectifs. Toute reproduction, représentation, modification, publication, 
+                        adaptation de tout ou partie des éléments du site, quel que soit le moyen ou le procédé utilisé, 
+                        est interdite, sauf autorisation écrite préalable de l'éditeur.
+                    </p>
+                </section>
+                
+                <section aria-labelledby="responsability-title">
+                    <h2 id="responsability-title">4. Responsabilités</h2>
+                    <p>
+                        L'éditeur du site ne saurait être tenu responsable des dommages directs ou indirects subis par l'utilisateur 
+                        du fait de l'utilisation du site ou de tout autre site lié. L'utilisateur s'engage à utiliser le site conformément 
+                        aux lois et règlements en vigueur.
+                    </p>
+                </section>
+                
+                <section aria-labelledby="data-title">
+                    <h2 id="data-title">5. Données personnelles</h2>
+                    <p>
+                        Ce site ne collecte aucune donnée personnelle sans votre consentement explicite. 
+                        Pour plus d'informations, consultez notre <a href="/legal/politique-confidentialite" aria-label="Politique de confidentialité">Politique de Confidentialité</a>.
+                    </p>
+                </section>
+                
+                <section aria-labelledby="adult-title">
+                    <h2 id="adult-title">6. Contenu à caractère adulte</h2>
+                    <p>
+                        Ce site contient du contenu destiné à un public adulte. En accédant à ce site, vous confirmez 
+                        avoir l'âge légal dans votre pays de résidence et accepter les conditions d'utilisation.
+                    </p>
+                </section>
+                
+                <div class="text-center mt-5">
+                    <p class="text-muted">Dernière mise à jour : Juin 2026</p>
+                </div>
+            </article>
+        </div>
+    </div>
+</div>

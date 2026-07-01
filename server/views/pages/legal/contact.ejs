@@ -1,94 +1,133 @@
 <%- include('../../layouts/main', {
-    title: 'Contact - Cris et Ronronnements',
-    body: `
-        <div class="container my-5">
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <div class="card shadow">
-                        <div class="card-header bg-primary text-white">
-                            <h1 class="card-title h3 mb-0 text-center">Contact</h1>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <!-- Formulaire de contact -->
-                                <div class="col-md-6">
-                                    <h2 class="h4 mb-4">Envoyez-nous un message</h2>
-                                    <form id="contactForm">
-                                        <div class="mb-3">
-                                            <label for="name" class="form-label">Nom</label>
-                                            <input type="text" class="form-control" id="name" name="name" required>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="email" class="form-label">Email</label>
-                                            <input type="email" class="form-control" id="email" name="email" required>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="subject" class="form-label">Sujet</label>
-                                            <select class="form-select" id="subject" name="subject" required>
-                                                <option value="" selected disabled>Sélectionnez un sujet</option>
-                                                <option value="question">Question générale</option>
-                                                <option value="technique">Problème technique</option>
-                                                <option value="contenu">Question sur le contenu</option>
-                                                <option value="autre">Autre</option>
-                                            </select>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="message" class="form-label">Message</label>
-                                            <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
-                                        </div>
-                                        <button type="submit" class="btn btn-primary w-100">
-                                            <i class="bi bi-send me-2"></i> Envoyer
-                                        </button>
-                                    </form>
+    title: 'Contact - Cris et Ronronnements'
+}) %>
+
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow" role="region" aria-labelledby="contact-title">
+                <div class="card-header bg-primary text-white">
+                    <h1 class="card-title h3 mb-0 text-center" id="contact-title">Contact</h1>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <!-- Formulaire de contact -->
+                        <div class="col-md-6">
+                            <h2 class="h4 mb-4" id="form-title">Envoyez-nous un message</h2>
+                            <form id="contactForm" aria-labelledby="form-title" aria-describedby="form-desc">
+                                <p id="form-desc" class="visually-hidden">Formulaire de contact pour Cris et Ronronnements</p>
+                                
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">Nom</label>
+                                    <input 
+                                        type="text" 
+                                        class="form-control" 
+                                        id="name" 
+                                        name="name" 
+                                        required 
+                                        aria-required="true"
+                                        aria-describedby="name-help"
+                                    >
+                                    <div id="name-help" class="form-text visually-hidden">Votre nom complet</div>
                                 </div>
                                 
-                                <!-- Informations de contact -->
-                                <div class="col-md-6">
-                                    <h2 class="h4 mb-4">Informations de contact</h2>
-                                    <address>
-                                        <strong>Éditeur :</strong> Simon Vitsonnet<br>
-                                        <strong>Email :</strong> <a href="mailto:contact@simonvitsonnet.com">contact@simonvitsonnet.com</a><br>
-                                        <strong>Site web :</strong> <a href="https://simonvitsonnet.com" target="_blank">simonvitsonnet.com</a>
-                                    </address>
-                                    
-                                    <h3 class="h5 mt-4">Réseaux sociaux</h3>
-                                    <div class="d-flex gap-3">
-                                        <a href="#" class="btn btn-outline-primary" title="Facebook">
-                                            <i class="bi bi-facebook"></i>
-                                        </a>
-                                        <a href="#" class="btn btn-outline-primary" title="Twitter">
-                                            <i class="bi bi-twitter"></i>
-                                        </a>
-                                        <a href="#" class="btn btn-outline-primary" title="Instagram">
-                                            <i class="bi bi-instagram"></i>
-                                        </a>
-                                    </div>
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input 
+                                        type="email" 
+                                        class="form-control" 
+                                        id="email" 
+                                        name="email" 
+                                        required 
+                                        aria-required="true"
+                                        aria-describedby="email-help"
+                                    >
+                                    <div id="email-help" class="form-text visually-hidden">Votre adresse email valide</div>
                                 </div>
+                                
+                                <div class="mb-3">
+                                    <label for="subject" class="form-label">Sujet</label>
+                                    <select 
+                                        class="form-select" 
+                                        id="subject" 
+                                        name="subject" 
+                                        required 
+                                        aria-required="true"
+                                        aria-label="Sélectionnez un sujet"
+                                    >
+                                        <option value="" selected disabled>Sélectionnez un sujet</option>
+                                        <option value="question">Question générale</option>
+                                        <option value="technique">Problème technique</option>
+                                        <option value="contenu">Question sur le contenu</option>
+                                        <option value="autre">Autre</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="message" class="form-label">Message</label>
+                                    <textarea 
+                                        class="form-control" 
+                                        id="message" 
+                                        name="message" 
+                                        rows="5" 
+                                        required 
+                                        aria-required="true"
+                                        aria-describedby="message-help"
+                                    ></textarea>
+                                    <div id="message-help" class="form-text visually-hidden">Votre message détaillé</div>
+                                </div>
+                                
+                                <button type="submit" class="btn btn-primary w-100" aria-label="Envoyer le formulaire de contact">
+                                    <i class="bi bi-send me-2" aria-hidden="true"></i> Envoyer
+                                </button>
+                            </form>
+                        </div>
+                        
+                        <!-- Informations de contact -->
+                        <div class="col-md-6">
+                            <h2 class="h4 mb-4" id="info-title">Informations de contact</h2>
+                            <address>
+                                <strong>Éditeur :</strong> Simon Vitsonnet<br>
+                                <strong>Email :</strong> <a href="mailto:contact@simonvitsonnet.com" aria-label="Contacter Simon Vitsonnet par email">contact@simonvitsonnet.com</a><br>
+                                <strong>Site web :</strong> <a href="https://simonvitsonnet.com" aria-label="Site web de Simon Vitsonnet (nouvelle fenêtre)" target="_blank" rel="noopener noreferrer">simonvitsonnet.com</a>
+                            </address>
+                            
+                            <h3 class="h5 mt-4" id="social-title">Réseaux sociaux</h3>
+                            <div class="d-flex gap-3" role="list" aria-label="Réseaux sociaux">
+                                <a href="#" class="btn btn-outline-primary" title="Facebook" aria-label="Nous suivre sur Facebook (nouvelle fenêtre)">
+                                    <i class="bi bi-facebook" aria-hidden="true"></i>
+                                </a>
+                                <a href="#" class="btn btn-outline-primary" title="Twitter" aria-label="Nous suivre sur Twitter (nouvelle fenêtre)">
+                                    <i class="bi bi-twitter" aria-hidden="true"></i>
+                                </a>
+                                <a href="#" class="btn btn-outline-primary" title="Instagram" aria-label="Nous suivre sur Instagram (nouvelle fenêtre)">
+                                    <i class="bi bi-instagram" aria-hidden="true"></i>
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        
-        <script>
-        // Gestion du formulaire de contact (exemple basique)
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Récupérer les valeurs du formulaire
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const subject = document.getElementById('subject').value;
-            const message = document.getElementById('message').value;
-            
-            // Ici, vous pourriez envoyer les données à un serveur
-            // Pour l'instant, on affiche juste un message
-            alert(\`Merci pour votre message, \${name}! Nous vous répondrons bientôt à l'adresse \${email}.\`);
-            
-            // Réinitialiser le formulaire
-            this.reset();
-        });
-        </script>
-    `
-}) %>
+    </div>
+</div>
+
+<script>
+// Gestion du formulaire de contact (exemple basique)
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Récupérer les valeurs du formulaire
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const subject = document.getElementById('subject').value;
+    const message = document.getElementById('message').value;
+    
+    // Ici, vous pourriez envoyer les données à un serveur
+    // Pour l'instant, on affiche juste un message
+    alert(`Merci pour votre message, ${name}! Nous vous répondrons bientôt à l'adresse ${email}.`);
+    
+    // Réinitialiser le formulaire
+    this.reset();
+});
+</script>

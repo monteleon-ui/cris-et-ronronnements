@@ -1,75 +1,90 @@
 <%- include('../layouts/main', {
-    title: 'Contrôle Parental - Cris et Ronronnements',
-    body: `
-        <div class="container my-5">
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <div class="card shadow">
-                        <div class="card-header bg-warning text-dark">
-                            <h1 class="card-title h3 mb-0 text-center">Contrôle Parental</h1>
-                        </div>
-                        <div class="card-body">
-                            <div class="alert alert-info">
-                                <h4 class="alert-heading">Accès restreint</h4>
-                                <p>
-                                    Cette section du site contient du contenu destiné à un public adulte. 
-                                    Pour y accéder, vous devez confirmer que vous avez l'âge légal dans votre pays.
-                                </p>
+    title: 'Contrôle Parental - Cris et Ronronnements'
+}) %>
+
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow" role="region" aria-labelledby="parental-title">
+                <div class="card-header bg-warning text-dark">
+                    <h1 class="card-title h3 mb-0 text-center" id="parental-title">Contrôle Parental</h1>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-info" role="alert" aria-live="polite">
+                        <h4 class="alert-heading">Accès restreint</h4>
+                        <p>
+                            Cette section du site contient du contenu destiné à un public adulte. 
+                            Pour y accéder, vous devez confirmer que vous avez l'âge légal dans votre pays.
+                        </p>
+                    </div>
+                    
+                    <form id="ageVerificationForm" class="mt-4" aria-labelledby="age-verification-title">
+                        <fieldset>
+                            <legend id="age-verification-title" class="form-label">
+                                <strong>Êtes-vous majeur(e) dans votre pays de résidence ?</strong>
+                            </legend>
+                            <div class="mb-3">
+                                <div class="form-check form-check-inline">
+                                    <input 
+                                        class="form-check-input" 
+                                        type="radio" 
+                                        name="ageCheck" 
+                                        id="ageYes" 
+                                        value="yes" 
+                                        required 
+                                        aria-required="true"
+                                    >
+                                    <label class="form-check-label" for="ageYes">Oui, j'ai l'âge légal</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input 
+                                        class="form-check-input" 
+                                        type="radio" 
+                                        name="ageCheck" 
+                                        id="ageNo" 
+                                        value="no"
+                                    >
+                                    <label class="form-check-label" for="ageNo">Non, je suis mineur(e)</label>
+                                </div>
                             </div>
                             
-                            <form id="ageVerificationForm" class="mt-4">
-                                <div class="mb-3">
-                                    <label for="ageCheck" class="form-label">
-                                        <strong>Êtes-vous majeur(e) dans votre pays de résidence ?</strong>
-                                    </label>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="ageCheck" id="ageYes" value="yes" required>
-                                        <label class="form-check-label" for="ageYes">Oui, j'ai l'âge légal</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="ageCheck" id="ageNo" value="no">
-                                        <label class="form-check-label" for="ageNo">Non, je suis mineur(e)</label>
-                                    </div>
-                                </div>
-                                
-                                <div class="mb-3">
-                                    <button type="submit" class="btn btn-primary w-100">
-                                        <i class="bi bi-check-circle me-2"></i> Confirmer et accéder au site
-                                    </button>
-                                </div>
-                            </form>
-                            
-                            <div class="text-center text-muted small">
-                                <p>
-                                    En confirmant, vous acceptez que ce site contient du contenu à caractère adulte 
-                                    et que vous êtes responsable de votre navigation.
-                                </p>
+                            <div class="mb-3">
+                                <button type="submit" class="btn btn-primary w-100" aria-label="Confirmer et accéder au site">
+                                    <i class="bi bi-check-circle me-2" aria-hidden="true"></i> Confirmer et accéder au site
+                                </button>
                             </div>
-                        </div>
+                        </fieldset>
+                    </form>
+                    
+                    <div class="text-center text-muted small" aria-live="polite">
+                        <p>
+                            En confirmant, vous acceptez que ce site contient du contenu à caractère adulte 
+                            et que vous êtes responsable de votre navigation.
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+</div>
+
+<script>
+// Gestion du formulaire de vérification d'âge
+document.getElementById('ageVerificationForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const ageCheck = document.querySelector('input[name="ageCheck"]:checked');
+    
+    if (ageCheck && ageCheck.value === 'yes') {
+        // Définir un cookie pour 30 jours
+        const expiryDate = new Date();
+        expiryDate.setDate(expiryDate.getDate() + 30);
+        document.cookie = `ageVerified=true; expires=${expiryDate.toUTCString()}; path=/`;
         
-        <script>
-        // Gestion du formulaire de vérification d'âge
-        document.getElementById('ageVerificationForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const ageCheck = document.querySelector('input[name="ageCheck"]:checked');
-            
-            if (ageCheck && ageCheck.value === 'yes') {
-                // Définir un cookie pour 30 jours
-                const expiryDate = new Date();
-                expiryDate.setDate(expiryDate.getDate() + 30);
-                document.cookie = \`ageVerified=true; expires=\${expiryDate.toUTCString()}; path=/\`;
-                
-                // Rediriger vers la page d'accueil
-                window.location.href = '/';
-            } else {
-                // Rediriger vers une page sûre (ex: Google)
-                window.location.href = 'https://www.google.com';
-            }
-        });
-        </script>
-    `
-}) %>
+        // Rediriger vers la page d'accueil
+        window.location.href = '/';
+    } else {
+        // Rediriger vers une page sûre (ex: Google)
+        window.location.href = 'https://www.google.com';
+    }
+});
+</script>

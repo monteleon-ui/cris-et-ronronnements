@@ -1,11 +1,63 @@
 <%- include('../layouts/main', {
-<<<<<<< Updated upstream
     title: 'Accueil - Cris et Ronronnements'
 }) %>
 
-<%- include("../partials/index-content") %>
-=======
-    title: 'Accueil - Cris et Ronronnements',
-    body: '<%- include("../partials/index-content") %>'
-}) %>
->>>>>>> Stashed changes
+<div class="container my-5">
+    <section aria-labelledby="welcome-title">
+        <h1 id="welcome-title">Bienvenue sur Cris et Ronronnements</h1>
+        <p class="lead">
+            Un espace dédié à l'exploration de soi et des autres, 
+            à travers des questionnaires, des ressources et des œuvres littéraires.
+        </p>
+        
+        <div class="row g-4" role="list">
+            <!-- Carte Projet BFK -->
+            <div class="col-md-4" role="listitem">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <h2 class="card-title" id="bfk-title">Projet BFK</h2>
+                        <p class="card-text">
+                            BDSM, Fetish, Kink et plus encore. 
+                            Un questionnaire complet pour explorer vos préférences.
+                        </p>
+                    </div>
+                    <div class="card-footer bg-transparent">
+                        <a href="/bfk" class="btn btn-primary" aria-label="En savoir plus sur le projet BFK">En savoir plus</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Carte IUFMM -->
+            <div class="col-md-4" role="listitem">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <h2 class="card-title" id="iufmm-title">IUFMM</h2>
+                        <p class="card-text">
+                            Institut Utile de Formation des Maîtres et Maîtresses. 
+                            Des cours pour approfondir vos connaissances.
+                        </p>
+                    </div>
+                    <div class="card-footer bg-transparent">
+                        <a href="/iufmm" class="btn btn-primary" aria-label="En savoir plus sur l'IUFMM">En savoir plus</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Carte Éditions SV -->
+            <div class="col-md-4" role="listitem">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <h2 class="card-title" id="sv-title">Éditions SV</h2>
+                        <p class="card-text">
+                            Œuvres littéraires de Simon Vitsonnet. 
+                            Poèmes, recueils et ouvrages à découvrir.
+                        </p>
+                    </div>
+                    <div class="card-footer bg-transparent">
+                        <a href="/sv_edition" class="btn btn-primary" aria-label="En savoir plus sur les Éditions SV">En savoir plus</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

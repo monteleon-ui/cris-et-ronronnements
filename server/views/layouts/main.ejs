@@ -3,23 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Site dédié à l'exploration de soi et des autres à travers des questionnaires, des ressources et des œuvres littéraires.">
     <title><%= title || 'Cris et Ronronnements' %></title>
-    <link rel="icon" href="/assets/images/favicon.ico" type="image/x-icon">
+    
+    <!-- Favicon avec aria-label -->
+    <link rel="icon" href="/assets/images/favicon.ico" type="image/x-icon" aria-label="Favicon de Cris et Ronronnements">
+    <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png" aria-label="Icône Apple Touch pour Cris et Ronronnements">
+    
+    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="/assets/Bootstrap/css/bootstrap.min.css">
+    
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 <body>
-    <%- include('../partials/header') %>
-
-    <!-- Contenu dynamique -->
-    <main>
-        <% if (locals.body) { %>
-            <%- body %>
-        <% } %>
+    <!-- En-tête avec rôle ARIA -->
+    <header role="banner">
+        <%- include('../partials/header') %>
+    </header>
+    
+    <!-- Contenu principal avec rôle ARIA -->
+    <main role="main">
+        <%- body %>
     </main>
-
-    <%- include('../partials/footer') %>
-
+    
+    <!-- Pied de page avec rôle ARIA -->
+    <footer role="contentinfo">
+        <%- include('../partials/footer') %>
+    </footer>
+    
+    <!-- Bootstrap JS Bundle (includes Popper) -->
     <script src="/assets/Bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
