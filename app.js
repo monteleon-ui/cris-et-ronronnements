@@ -21,7 +21,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Servir les fichiers statiques depuis /public
-app.use(express.static(path.join(__dirname, 'public')));
+const publicPath = path.join(__dirname, 'public');
+app.use(express.static(publicPath));
 
 // ========== ROUTES ========== //
 app.get('/', (req, res) => {
@@ -53,4 +54,5 @@ app.use((err, req, res, next) => {
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
+    console.log(`Chemin des fichiers statiques : ${publicPath}`);
 });
