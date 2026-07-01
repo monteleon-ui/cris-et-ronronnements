@@ -1,0 +1,15 @@
+# Configuration Passenger pour Node.js
+PassengerAppRoot "/home/crisfahs/nodevenv/nocstorage"
+PassengerBaseURI "/"
+PassengerNodejs "/home/crisfahs/nodevenv/nocstorage/20/bin/node"
+PassengerAppType node
+PassengerStartupFile "app.js"
+PassengerMinInstances 1
+PassengerSpawnMethod direct
+PassengerLogLevel 3
+PassengerLogFile "/home/crisfahs/logs/passenger.log"
+
+# Désactiver le cache pour éviter les problèmes
+<IfModule mod_expires.c>
+    ExpiresActive Off
+</IfModule>
