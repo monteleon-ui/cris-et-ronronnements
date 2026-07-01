@@ -1,12 +1,20 @@
 // app.js - Serveur Express avec EJS
 const express = require('express');
 const path = require('path');
+const helmet = require('helmet');
+const morgan = require('morgan');
 
 const app = express();
 
 // Configurer EJS comme moteur de templates
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'server/views'));
+
+// Middleware de sécurité (Helmet)
+app.use(helmet());
+
+// Middleware de logging (Morgan)
+app.use(morgan('dev'));
 
 // Middleware pour parser le body des requêtes POST
 app.use(express.json());
