@@ -2,52 +2,72 @@
    Style CSS inspiré de FetLife - Juillet 2025
    - Charte graphique : FetLife (noir, rouge, gris)
    - Accessibilité : Conforme RGAA (Niveau AA)
-   - Framework : Bootstrap 5 via CDN
+   - Compatibilité : Chrome, Firefox, Safari 14+, Edge
+   - Framework : Bootstrap 5.2.3 via CDN (compatible Safari)
    =================================================================== */
 
-/* ========== VARIABLES CSS (Charte FetLife) ========== */
+/* ========== RESET ET NORMALISATION (Safari) ========== */
+* {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%; /* Empêche le redimensionnement du texte sur iOS */
+    height: -webkit-fill-available; /* Correction pour Safari mobile */
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    min-height: -webkit-fill-available; /* Correction pour Safari mobile */
+}
+
+/* ========== VARIABLES CSS (avec fallbacks pour Safari) ========== */
 :root {
     /* Couleurs principales (FetLife) */
-    --fetlife-black: #1B1B1B;       /* Fond principal */
-    --fetlife-dark: #070707;        /* Fond très sombre */
-    --fetlife-charcoal: #222222;    /* Bordures principales */
-    --fetlife-grey-dark: #272727;   /* Bordures secondaires */
-    --fetlife-grey: #333333;        /* Textes secondaires */
-    --fetlife-grey-light: #555555; /* Textes atténués */
-    --fetlife-grey-lighter: #777777; /* Textes très atténués */
+    --fetlife-black: #1B1B1B;
+    --fetlife-dark: #070707;
+    --fetlife-charcoal: #222222;
+    --fetlife-grey-dark: #272727;
+    --fetlife-grey: #333333;
+    --fetlife-grey-light: #555555;
+    --fetlife-grey-lighter: #777777;
     
     /* Couleurs d'accentuation (FetLife) */
-    --fetlife-red: #900;           /* Rouge principal */
-    --fetlife-red-dark: #600;      /* Rouge foncé */
-    --fetlife-red-light: #A00;     /* Rouge clair */
-    --fetlife-red-hover: #C00;     /* Rouge survol */
+    --fetlife-red: #900;
+    --fetlife-red-dark: #600;
+    --fetlife-red-light: #A00;
+    --fetlife-red-hover: #C00;
     
     /* Couleurs de texte (Accessibilité RGAA) */
-    --text-primary: #EEE;          /* Texte principal (contraste 15.3:1) */
-    --text-secondary: #DDD;        /* Texte secondaire (contraste 13.3:1) */
-    --text-muted: #AAA;            /* Texte atténué (contraste 10.2:1) */
-    --text-disabled: #777;        /* Texte désactivé (contraste 7.2:1) */
+    --text-primary: #EEE;
+    --text-secondary: #DDD;
+    --text-muted: #AAA;
+    --text-disabled: #777;
     
     /* Couleurs de fond */
-    --bg-primary: #1B1B1B;         /* Fond principal */
-    --bg-secondary: #222222;       /* Fond secondaire */
-    --bg-tertiary: #272727;        /* Fond tertiaire */
-    --bg-light: #f8f9fa;           /* Fond clair (pour les cartes) */
+    --bg-primary: #1B1B1B;
+    --bg-secondary: #222222;
+    --bg-tertiary: #272727;
+    --bg-light: #f8f9fa;
     
-    /* Couleurs Bootstrap (pour compatibilité) */
-    --primary-color: #900;        /* Rouge FetLife (remplace le violet) */
-    --secondary-color: #6c757d;   /* Gris Bootstrap */
-    --success-color: #28a745;      /* Vert */
-    --warning-color: #ffc107;     /* Jaune */
-    --danger-color: #dc3545;       /* Rouge Bootstrap */
-    --light-color: #f8f9fa;        /* Gris clair */
-    --dark-color: #212529;         /* Gris foncé */
-    --border-color: #272727;      /* Bordure FetLife */
-    --text-color: #DDD;           /* Texte principal */
+    /* Couleurs Bootstrap */
+    --primary-color: #900;
+    --secondary-color: #6c757d;
+    --success-color: #28a745;
+    --warning-color: #ffc107;
+    --danger-color: #dc3545;
+    --light-color: #f8f9fa;
+    --dark-color: #212529;
+    --border-color: #272727;
+    --text-color: #DDD;
     
-    /* Polices (FetLife) */
-    --font-primary: 'Lucida Grande', 'Lucida Sans Unicode', Arial, Verdana, sans-serif;
-    --font-titles: Georgia, serif;
+    /* Polices (FetLife avec fallbacks pour Safari) */
+    --font-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Lucida Grande', 'Lucida Sans Unicode', Arial, Verdana, sans-serif;
+    --font-titles: Georgia, 'Times New Roman', Times, serif;
     --font-mono: 'Courier New', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', monospace;
     
     /* Bordures et ombres */
@@ -56,20 +76,102 @@
     --box-shadow-hover: 0 2px 5px rgba(0, 0, 0, 0.7);
 }
 
-/* ========== RESET ET BASE ========== */
-html {
-    scroll-behavior: smooth;
+/* ========== CORRECTIONS BOOTSTRAP 5.2.3 POUR SAFARI ========== */
+
+/* 1. Correction des problèmes de flexbox dans Safari */
+@supports (-webkit-touch-callout: none) {
+    /* iOS Safari spécifique */
+    .row {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+    }
+    
+    .col-md-4, .col-md-6, .col-md-12 {
+        -webkit-box-flex: 0;
+        -webkit-flex: 0 0 auto;
+        flex: 0 0 auto;
+    }
+    
+    .justify-content-center {
+        -webkit-box-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+    }
+    
+    .justify-content-md-center {
+        -webkit-justify-content: center;
+        justify-content: center;
+    }
+    
+    .text-center {
+        -webkit-text-align: center;
+        text-align: center;
+    }
 }
 
+/* 2. Correction des problèmes de grid dans Safari */
+@supports (display: grid) {
+    .container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+    }
+}
+
+/* 3. Correction des problèmes de positionnement dans Safari */
+.dropdown-menu {
+    position: absolute;
+    -webkit-position: absolute;
+}
+
+.dropdown-toggle::after {
+    display: inline-block;
+    margin-left: 0.255em;
+    vertical-align: 0.255em;
+    content: "";
+    border-top: 0.3em solid;
+    border-right: 0.3em solid transparent;
+    border-bottom: 0;
+    border-left: 0.3em solid transparent;
+    -webkit-border-top: 0.3em solid;
+    -webkit-border-right: 0.3em solid transparent;
+    -webkit-border-bottom: 0;
+    -webkit-border-left: 0.3em solid transparent;
+}
+
+/* 4. Correction des problèmes de focus dans Safari */
+:focus:not(:focus-visible) {
+    outline: none;
+}
+
+:focus-visible {
+    outline: 2px solid var(--fetlife-red);
+    outline-offset: 2px;
+}
+
+/* 5. Correction des problèmes de visibility dans Safari */
+.dropdown-menu {
+    -webkit-visibility: hidden;
+    visibility: hidden;
+}
+
+.dropdown-menu.show {
+    -webkit-visibility: visible;
+    visibility: visible;
+}
+
+/* ========== RESET ET BASE ========== */
 body {
     font-family: var(--font-primary);
     color: var(--text-secondary);
-    background-color: var(--fetlife-black);
+    background-color: var(--bg-primary);
     line-height: 1.6;
     min-height: 100vh;
+    -webkit-font-smoothing: antialiased; /* Lisibilité améliorée sur Safari */
+    -moz-osx-font-smoothing: grayscale;
 }
 
-/* ========== TYPOGRAPHIE (FetLife) ========== */
+/* ========== TYPOGRAPHIE (FetLife avec fallbacks) ========== */
 h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-titles);
     color: var(--text-primary);
@@ -90,6 +192,7 @@ h2 {
     color: var(--fetlife-red);
     text-shadow: 0 -2px 0 #000;
     font-weight: bold;
+    -webkit-font-smoothing: antialiased;
 }
 
 h3 {
@@ -125,6 +228,7 @@ a {
     color: var(--fetlife-red);
     text-decoration: none;
     transition: color 0.2s ease;
+    -webkit-transition: color 0.2s ease; /* Safari */
 }
 
 a:hover, a:focus {
@@ -133,7 +237,7 @@ a:hover, a:focus {
     outline: none;
 }
 
-/* Liens dans le texte (meilleure visibilité) */
+/* Liens dans le texte */
 p a {
     color: var(--fetlife-red);
     text-decoration: underline;
@@ -144,6 +248,7 @@ p a {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 15px;
+    width: 100%;
 }
 
 /* ========== EN-TÊTE ET PIED DE PAGE ========== */
@@ -189,6 +294,8 @@ nav {
     color: var(--text-secondary);
     padding: 0.5rem 1rem;
     transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease; /* Safari */
+    display: inline-block;
 }
 
 .nav-link:hover, .nav-link:focus {
@@ -202,6 +309,9 @@ nav {
     color: var(--text-secondary);
     background-color: transparent;
     border: none;
+    -webkit-appearance: none; /* Safari */
+    appearance: none;
+    cursor: pointer;
 }
 
 .dropdown-toggle:hover, .dropdown-toggle:focus {
@@ -214,16 +324,35 @@ nav {
     border: 1px solid var(--fetlife-grey-dark);
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow-hover);
+    -webkit-box-shadow: var(--box-shadow-hover); /* Safari */
     padding: 0.5rem 0;
+    min-width: 12rem;
+    z-index: 1000;
+    position: absolute;
 }
 
 .dropdown-item {
     color: var(--text-secondary);
     padding: 0.5rem 1.5rem;
+    display: block;
+    width: 100%;
+    clear: both;
+    font-weight: 400;
+    text-align: inherit;
+    text-decoration: none;
+    white-space: nowrap;
+    background-color: transparent;
+    border: 0;
 }
 
 .dropdown-item:hover, .dropdown-item:focus {
     color: var(--text-primary);
+    background-color: var(--fetlife-dark);
+}
+
+.dropdown-item:active, .dropdown-item.active {
+    color: var(--text-primary);
+    text-decoration: none;
     background-color: var(--fetlife-dark);
 }
 
@@ -234,13 +363,17 @@ nav {
     border-radius: var(--border-radius);
     margin-bottom: 1.5rem;
     box-shadow: var(--box-shadow);
+    -webkit-box-shadow: var(--box-shadow); /* Safari */
     transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease; /* Safari */
     color: var(--text-secondary);
 }
 
 .card:hover {
     transform: translateY(-2px);
+    -webkit-transform: translateY(-2px); /* Safari */
     box-shadow: var(--box-shadow-hover);
+    -webkit-box-shadow: var(--box-shadow-hover); /* Safari */
     border-color: var(--fetlife-red);
 }
 
@@ -253,6 +386,9 @@ nav {
 
 .card-body {
     padding: 1.5rem;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 1 auto;
+    flex: 1 1 auto;
 }
 
 .card-title {
@@ -272,21 +408,32 @@ nav {
     padding: 1rem;
 }
 
-/* ========== BOUTONS (Style FetLife) ========== */
+/* ========== BOUTONS (Style FetLife avec préfixes Safari) ========== */
 .btn {
     display: inline-block;
     padding: 0.5rem 1.5rem;
     background-color: var(--fetlife-dark);
+    /* Dégradé avec préfixes pour Safari */
+    background-image: -webkit-linear-gradient(top, var(--fetlife-charcoal), var(--fetlife-dark));
+    background-image: -moz-linear-gradient(top, var(--fetlife-charcoal), var(--fetlife-dark));
+    background-image: -ms-linear-gradient(top, var(--fetlife-charcoal), var(--fetlife-dark));
+    background-image: -o-linear-gradient(top, var(--fetlife-charcoal), var(--fetlife-dark));
     background-image: linear-gradient(to bottom, var(--fetlife-charcoal), var(--fetlife-dark));
     color: var(--text-primary);
     text-decoration: none;
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow);
+    -webkit-box-shadow: var(--box-shadow); /* Safari */
     text-shadow: 0 -1px 0 #000;
     border: none;
     cursor: pointer;
     transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease; /* Safari */
     font-weight: bold;
+    -webkit-appearance: none; /* Safari */
+    appearance: none;
+    text-align: center;
+    vertical-align: middle;
 }
 
 .btn:hover, .btn:focus {
@@ -295,18 +442,29 @@ nav {
     color: var(--text-primary);
     text-decoration: none;
     box-shadow: var(--box-shadow-hover);
+    -webkit-box-shadow: var(--box-shadow-hover); /* Safari */
     outline: none;
 }
 
-.btn:active {
+.btn:active, .btn.active {
     position: relative;
     top: 1px;
     box-shadow: none;
+    -webkit-box-shadow: none; /* Safari */
+}
+
+.btn.disabled, .btn:disabled {
+    opacity: 0.65;
+    pointer-events: none;
 }
 
 /* Bouton principal (rouge FetLife) */
 .btn-primary {
     background-color: var(--fetlife-red);
+    background-image: -webkit-linear-gradient(top, #A00, #700);
+    background-image: -moz-linear-gradient(top, #A00, #700);
+    background-image: -ms-linear-gradient(top, #A00, #700);
+    background-image: -o-linear-gradient(top, #A00, #700);
     background-image: linear-gradient(to bottom, #A00, #700);
     color: var(--text-primary);
     border-bottom: 1px solid rgba(0, 0, 0, 0.75);
@@ -314,13 +472,26 @@ nav {
 
 .btn-primary:hover, .btn-primary:focus {
     background-color: var(--fetlife-red-hover);
+    background-image: -webkit-linear-gradient(top, #C00, #800);
+    background-image: -moz-linear-gradient(top, #C00, #800);
+    background-image: -ms-linear-gradient(top, #C00, #800);
+    background-image: -o-linear-gradient(top, #C00, #800);
     background-image: linear-gradient(to bottom, #C00, #800);
     color: #FFF;
+}
+
+.btn-primary.disabled, .btn-primary:disabled {
+    background-color: #666;
+    background-image: none;
 }
 
 /* Bouton secondaire */
 .btn-secondary {
     background-color: var(--fetlife-grey);
+    background-image: -webkit-linear-gradient(top, var(--fetlife-charcoal), var(--fetlife-grey));
+    background-image: -moz-linear-gradient(top, var(--fetlife-charcoal), var(--fetlife-grey));
+    background-image: -ms-linear-gradient(top, var(--fetlife-charcoal), var(--fetlife-grey));
+    background-image: -o-linear-gradient(top, var(--fetlife-charcoal), var(--fetlife-grey));
     background-image: linear-gradient(to bottom, var(--fetlife-charcoal), var(--fetlife-grey));
     color: var(--text-primary);
 }
@@ -337,6 +508,7 @@ nav {
     color: var(--fetlife-red);
     border: 1px solid var(--fetlife-red);
     box-shadow: none;
+    -webkit-box-shadow: none; /* Safari */
 }
 
 .btn-outline-primary:hover, .btn-outline-primary:focus {
@@ -351,6 +523,12 @@ nav {
     color: var(--text-primary);
     border-radius: var(--border-radius);
     padding: 0.5rem 1rem;
+    -webkit-appearance: none; /* Safari */
+    appearance: none;
+    display: block;
+    width: 100%;
+    font-size: 1rem;
+    line-height: 1.5;
 }
 
 .form-control:focus {
@@ -358,10 +536,13 @@ nav {
     border-color: var(--fetlife-red);
     color: var(--text-primary);
     box-shadow: 0 0 0 0.2rem rgba(153, 0, 0, 0.25);
+    -webkit-box-shadow: 0 0 0 0.2rem rgba(153, 0, 0, 0.25); /* Safari */
+    outline: none;
 }
 
 .form-control::placeholder {
     color: var(--text-disabled);
+    opacity: 1; /* Safari */
 }
 
 .label {
@@ -406,6 +587,7 @@ table {
     width: 100%;
     margin-bottom: 1.5rem;
     color: var(--text-secondary);
+    border-collapse: collapse;
 }
 
 th {
@@ -439,6 +621,7 @@ pre {
     padding: 1rem;
     overflow-x: auto;
     margin-bottom: 1rem;
+    -webkit-overflow-scrolling: touch; /* Safari */
 }
 
 blockquote {
@@ -463,12 +646,16 @@ blockquote {
 }
 
 .bg-dark {
-    background-color: var(--fetlife-black) !important;
+    background-color: var(--bg-primary) !important;
 }
 
 .bg-light {
     background-color: var(--bg-light) !important;
     color: var(--dark-color) !important;
+}
+
+.bg-secondary {
+    background-color: var(--bg-secondary) !important;
 }
 
 /* Bordures */
@@ -506,7 +693,20 @@ blockquote {
     padding-bottom: 1rem !important;
 }
 
-/* ========== ANIMATIONS ========== */
+/* ========== ANIMATIONS (avec préfixes Safari) ========== */
+@-webkit-keyframes fadeIn {
+    from {
+        opacity: 0;
+        -webkit-transform: translateY(10px);
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+    }
+}
+
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -519,6 +719,7 @@ blockquote {
 }
 
 .fade-in {
+    -webkit-animation: fadeIn 0.5s ease-out;
     animation: fadeIn 0.5s ease-out;
 }
 
@@ -540,6 +741,30 @@ blockquote {
     .card {
         margin-bottom: 1rem;
     }
+    
+    /* Correction pour Safari mobile */
+    .dropdown-menu {
+        position: static;
+        display: block;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        -webkit-transition: all 0.3s ease;
+        pointer-events: none;
+    }
+    
+    .dropdown:hover .dropdown-menu,
+    .dropdown:focus-within .dropdown-menu,
+    .dropdown.show .dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+    }
+    
+    /* Correction des cartes en mobile */
+    .card {
+        width: 100%;
+    }
 }
 
 @media (max-width: 576px) {
@@ -554,6 +779,16 @@ blockquote {
     .btn {
         padding: 0.375rem 1rem;
         font-size: 0.9rem;
+    }
+    
+    /* Correction pour les petits écrans Safari */
+    .nav-link {
+        padding: 0.375rem 0.75rem;
+        font-size: 0.9rem;
+    }
+    
+    .display-1 {
+        font-size: 5rem;
     }
 }
 
@@ -598,9 +833,6 @@ input[type="button"]:focus {
     z-index: 9999;
 }
 
-/* Contraste garanti pour les textes */
-/* Tous les textes ont un contraste ≥ 4.5:1 avec leur fond */
-
 /* ========== COMPOSANTS SPÉCIFIQUES ========== */
 
 /* Badges */
@@ -627,6 +859,7 @@ input[type="button"]:focus {
 main {
     padding: 2rem 0;
     min-height: calc(100vh - 120px);
+    min-height: -webkit-calc(100vh - 120px); /* Safari */
 }
 
 /* Section hero */
@@ -686,7 +919,7 @@ main {
 .error-container .display-1 {
     font-size: 8rem;
     line-height: 1;
-    color: var(--fetlife-red);
+    color: var(--fetlife-red) !important;
     text-shadow: 0 0 10px rgba(153, 0, 0, 0.5);
 }
 
@@ -727,6 +960,7 @@ main {
 
 .nav-link:hover {
     transform: translateY(-1px);
+    -webkit-transform: translateY(-1px); /* Safari */
 }
 
 /* ========== POLICES SUPPLÉMENTAIRES ========== */
@@ -737,7 +971,7 @@ main {
 }
 
 .ffg {
-    font-family: Georgia, serif;
+    font-family: var(--font-titles);
 }
 
 /* ========== UTILITAIRES DE COULEUR ========== */
@@ -812,6 +1046,8 @@ img {
     max-width: 100%;
     height: auto;
     border-radius: var(--border-radius);
+    -webkit-user-select: none; /* Empêche la sélection sur Safari */
+    user-select: none;
 }
 
 .figure {
@@ -828,4 +1064,141 @@ img {
     color: var(--text-muted);
     font-size: 0.9rem;
     margin-top: 0.5rem;
+}
+
+/* ========== CORRECTIONS SPÉCIFIQUES POUR SAFARI ========== */
+
+/* 1. Correction des dégradés dans Safari */
+@supports (-webkit-touch-callout: none) {
+    /* iOS Safari spécifique */
+    .btn-primary {
+        background-image: -webkit-linear-gradient(top, #A00, #700) !important;
+    }
+    
+    .btn {
+        background-image: -webkit-linear-gradient(top, var(--fetlife-charcoal), var(--fetlife-dark)) !important;
+    }
+}
+
+/* 2. Correction de la hauteur des lignes dans Safari */
+body {
+    -webkit-line-break: after-white-space;
+}
+
+/* 3. Correction des bordures arrondies dans Safari */
+.card,
+.btn,
+.dropdown-menu,
+.form-control {
+    -webkit-border-radius: var(--border-radius);
+}
+
+/* 4. Correction des ombres dans Safari */
+.card,
+.btn,
+.dropdown-menu {
+    -webkit-box-shadow: var(--box-shadow);
+}
+
+/* 5. Correction des transitions dans Safari */
+* {
+    -webkit-transition-property: all;
+    -webkit-transition-duration: 0.2s;
+    -webkit-transition-timing-function: ease;
+    -webkit-transition-delay: 0s;
+}
+
+/* 6. Correction du focus dans Safari */
+:focus:not(:focus-visible) {
+    outline: none;
+}
+
+:focus-visible {
+    outline: 2px solid var(--fetlife-red);
+    outline-offset: 2px;
+}
+
+/* 7. Correction des menus déroulants dans Safari */
+.dropdown-menu.show {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+}
+
+/* 8. Correction du scroll dans Safari */
+html {
+    -webkit-overflow-scrolling: touch;
+}
+
+/* 9. Correction des images dans Safari */
+img {
+    -webkit-transform: translateZ(0);
+}
+
+/* 10. Correction des polices dans Safari */
+@supports (font-variation-settings: normal) {
+    body {
+        font-variation-settings: 'wght' 400;
+    }
+}
+
+/* 11. Correction des problèmes de flexbox dans Bootstrap 5.2.3 pour Safari */
+@supports (-webkit-touch-callout: none) {
+    .d-flex {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+    }
+    
+    .flex-row {
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: row;
+        flex-direction: row;
+    }
+    
+    .flex-column {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: column;
+        flex-direction: column;
+    }
+    
+    .justify-content-center {
+        -webkit-box-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+    }
+    
+    .align-items-center {
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+    }
+    
+    .text-center {
+        text-align: center;
+    }
+}
+
+/* 12. Correction des problèmes de positionnement absolu dans Safari */
+.dropdown-menu {
+    position: absolute;
+    will-change: transform; /* Optimisation pour Safari */
+}
+
+/* 13. Correction des problèmes de z-index dans Safari */
+.dropdown-menu {
+    z-index: 1000;
+}
+
+/* 14. Correction des problèmes de width: 100% dans Safari */
+.card, .container, .row {
+    width: 100%;
+}
+
+/* 15. Correction des problèmes de min-height dans Safari */
+main, body, html {
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
 }
