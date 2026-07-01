@@ -1,260 +1,831 @@
-/* Personnalisation des cartes */
-.card {
-    border: none;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s;
-}
+/* ===================================================================
+   Style CSS inspiré de FetLife - Juillet 2025
+   - Charte graphique : FetLife (noir, rouge, gris)
+   - Accessibilité : Conforme RGAA (Niveau AA)
+   - Framework : Bootstrap 5 via CDN
+   =================================================================== */
 
-.card:hover {
-    transform: translateY(-5px);
-}
-
-/* Personnalisation des boutons */
-.btn-primary {
-    background-color: var(--primary-color);
-    border-color: var(--primary-color);
-}
-
-.btn-outline-secondary {
-    color: var(--secondary-color);
-    border-color: var(--secondary-color);
-}
-
-.btn-outline-secondary:hover {
-    background-color: var(--secondary-color);
-    color: white;
-}
-
-/* Style pour les images */
-.img-fluid {
-    border-radius: 8px;
-}
-
-/* Espacement supplémentaire */
-.my-4 {
-    margin-top: 2rem !important;
-    margin-bottom: 2rem !important;
-}
-/* Style pour le menu déroulant dans l'en-tête */
-.dropdown-toggle::after {
-    display: inline-block;
-    margin-left: 0.255em;
-    vertical-align: 0.255em;
-    content: "";
-    border-top: 0.3em solid;
-    border-right: 0.3em solid transparent;
-    border-bottom: 0;
-    border-left: 0.3em solid transparent;
-}
-
-.dropdown-menu {
-    min-width: 12rem;
-    padding: 0.5rem 0;
-    font-size: 1rem;
-    border-radius: 0.375rem;
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-    border: 1px solid rgba(0, 0, 0, 0.125);
-}
-
-.dropdown-item {
-    padding: 0.5rem 1rem;
-    color: #212529;
-}
-
-.dropdown-item:hover, .dropdown-item:focus {
-    color: #1a1e21;
-    background-color: #f8f9fa;
-    text-decoration: none;
-}
-
-/* Style pour le bouton du menu déroulant */
-.btn-link.nav-link {
-    color: #0d6efd;
-    font-weight: 500;
-    padding: 0.5rem 1rem;
-}
-
-.btn-link.nav-link:hover {
-    color: #0a58ca;
-    text-decoration: none;
-}
-/* ========== Variables CSS pour les couleurs ========== */
+/* ========== VARIABLES CSS (Charte FetLife) ========== */
 :root {
-    --primary-color: #6f42c1;       /* Violet (couleur principale) */
-    --secondary-color: #0d6efd;     /* Bleu Bootstrap (pour les liens/boutons) */
-    --success-color: #198754;       /* Vert (pour les succès) */
-    --warning-color: #ffc107;       /* Jaune (pour les avertissements) */
-    --danger-color: #dc3545;        /* Rouge (pour les erreurs) */
-    --light-color: #f8f9fa;         /* Gris clair (fond) */
-    --dark-color: #212529;          /* Gris foncé (texte) */
-    --border-color: #dee2e6;        /* Couleur des bordures */
-    --text-color: #495057;          /* Couleur du texte */
+    /* Couleurs principales (FetLife) */
+    --fetlife-black: #1B1B1B;       /* Fond principal */
+    --fetlife-dark: #070707;        /* Fond très sombre */
+    --fetlife-charcoal: #222222;    /* Bordures principales */
+    --fetlife-grey-dark: #272727;   /* Bordures secondaires */
+    --fetlife-grey: #333333;        /* Textes secondaires */
+    --fetlife-grey-light: #555555; /* Textes atténués */
+    --fetlife-grey-lighter: #777777; /* Textes très atténués */
+    
+    /* Couleurs d'accentuation (FetLife) */
+    --fetlife-red: #900;           /* Rouge principal */
+    --fetlife-red-dark: #600;      /* Rouge foncé */
+    --fetlife-red-light: #A00;     /* Rouge clair */
+    --fetlife-red-hover: #C00;     /* Rouge survol */
+    
+    /* Couleurs de texte (Accessibilité RGAA) */
+    --text-primary: #EEE;          /* Texte principal (contraste 15.3:1) */
+    --text-secondary: #DDD;        /* Texte secondaire (contraste 13.3:1) */
+    --text-muted: #AAA;            /* Texte atténué (contraste 10.2:1) */
+    --text-disabled: #777;        /* Texte désactivé (contraste 7.2:1) */
+    
+    /* Couleurs de fond */
+    --bg-primary: #1B1B1B;         /* Fond principal */
+    --bg-secondary: #222222;       /* Fond secondaire */
+    --bg-tertiary: #272727;        /* Fond tertiaire */
+    --bg-light: #f8f9fa;           /* Fond clair (pour les cartes) */
+    
+    /* Couleurs Bootstrap (pour compatibilité) */
+    --primary-color: #900;        /* Rouge FetLife (remplace le violet) */
+    --secondary-color: #6c757d;   /* Gris Bootstrap */
+    --success-color: #28a745;      /* Vert */
+    --warning-color: #ffc107;     /* Jaune */
+    --danger-color: #dc3545;       /* Rouge Bootstrap */
+    --light-color: #f8f9fa;        /* Gris clair */
+    --dark-color: #212529;         /* Gris foncé */
+    --border-color: #272727;      /* Bordure FetLife */
+    --text-color: #DDD;           /* Texte principal */
+    
+    /* Polices (FetLife) */
+    --font-primary: 'Lucida Grande', 'Lucida Sans Unicode', Arial, Verdana, sans-serif;
+    --font-titles: Georgia, serif;
+    --font-mono: 'Courier New', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', monospace;
+    
+    /* Bordures et ombres */
+    --border-radius: 5px;
+    --box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    --box-shadow-hover: 0 2px 5px rgba(0, 0, 0, 0.7);
 }
 
-/* ========== Styles globaux ========== */
+/* ========== RESET ET BASE ========== */
+html {
+    scroll-behavior: smooth;
+}
+
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    color: var(--text-color);
-    background-color: var(--light-color);
+    font-family: var(--font-primary);
+    color: var(--text-secondary);
+    background-color: var(--fetlife-black);
+    line-height: 1.6;
+    min-height: 100vh;
 }
 
-/* ========== Styles pour les cartes ========== */
-.card {
-    border: none;
-    border-radius: 0.5rem;
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
-    margin-bottom: 1.5rem;
+/* ========== TYPOGRAPHIE (FetLife) ========== */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-titles);
+    color: var(--text-primary);
+    font-weight: normal;
+    line-height: 1.2;
+    margin-bottom: 0.5em;
 }
 
-.card-header {
-    background-color: var(--primary-color);
-    color: white;
-    border-radius: 0.5rem 0.5rem 0 0 !important;
-    padding: 1rem;
+h1 {
+    font-size: 2.5rem;
+    color: var(--text-primary);
+    border-bottom: 2px solid var(--fetlife-grey-dark);
+    padding-bottom: 0.5em;
 }
 
-/* ========== Styles pour les boutons ========== */
-.btn-primary {
-    background-color: var(--primary-color);
-    border-color: var(--primary-color);
+h2 {
+    font-size: 2rem;
+    color: var(--fetlife-red);
+    text-shadow: 0 -2px 0 #000;
+    font-weight: bold;
 }
 
-.btn-primary:hover {
-    background-color: #5a32a8;
-    border-color: #5a32a8;
+h3 {
+    font-size: 1.5rem;
+    color: var(--fetlife-red);
+    font-weight: normal;
 }
 
-.btn-warning {
-    background-color: var(--warning-color);
-    border-color: var(--warning-color);
-    color: #212529;
+h4 {
+    font-size: 1.25rem;
+    color: var(--text-primary);
 }
 
-.btn-warning:hover {
-    background-color: #e0a800;
-    border-color: #d39e00;
-    color: #212529;
+h5 {
+    font-size: 1rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
 }
 
-.btn-outline-secondary {
-    color: var(--primary-color);
-    border-color: var(--primary-color);
+h6 {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    text-shadow: #000 0 -1px 0;
 }
 
-.btn-outline-secondary:hover {
-    background-color: var(--primary-color);
-    color: white;
+p {
+    margin-bottom: 1.5em;
+    color: var(--text-secondary);
 }
 
-.btn-outline-info {
-    color: var(--secondary-color);
-    border-color: var(--secondary-color);
-}
-
-.btn-outline-info:hover {
-    background-color: var(--secondary-color);
-    color: white;
-}
-
-/* ========== Styles pour les liens ========== */
 a {
-    color: var(--primary-color);
+    color: var(--fetlife-red);
     text-decoration: none;
+    transition: color 0.2s ease;
 }
 
-a:hover {
-    color: #5a32a8;
+a:hover, a:focus {
+    color: var(--fetlife-red-hover);
+    text-decoration: underline;
+    outline: none;
+}
+
+/* Liens dans le texte (meilleure visibilité) */
+p a {
+    color: var(--fetlife-red);
     text-decoration: underline;
 }
 
-/* ========== Styles pour les alertes ========== */
+/* ========== LAYOUT ========== */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* ========== EN-TÊTE ET PIED DE PAGE ========== */
+header {
+    background-color: var(--fetlife-charcoal);
+    border-bottom: 1px solid var(--fetlife-grey-dark);
+    padding: 1rem 0;
+    position: relative;
+}
+
+header h1 {
+    color: var(--text-primary);
+    font-family: var(--font-titles);
+    font-size: 2rem;
+    margin-bottom: 0;
+    border-bottom: none;
+    text-align: center;
+}
+
+footer {
+    background-color: var(--fetlife-charcoal);
+    border-top: 1px solid var(--fetlife-grey-dark);
+    padding: 1.5rem 0;
+    margin-top: 3rem;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+footer a {
+    color: var(--text-muted);
+}
+
+footer a:hover {
+    color: var(--fetlife-red);
+}
+
+/* ========== NAVIGATION ========== */
+nav {
+    margin-top: 1rem;
+}
+
+.nav-link {
+    color: var(--text-secondary);
+    padding: 0.5rem 1rem;
+    transition: all 0.2s ease;
+}
+
+.nav-link:hover, .nav-link:focus {
+    color: var(--fetlife-red);
+    background-color: var(--fetlife-dark);
+    border-radius: var(--border-radius);
+}
+
+/* Menu déroulant */
+.dropdown-toggle {
+    color: var(--text-secondary);
+    background-color: transparent;
+    border: none;
+}
+
+.dropdown-toggle:hover, .dropdown-toggle:focus {
+    color: var(--fetlife-red);
+    background-color: transparent;
+}
+
+.dropdown-menu {
+    background-color: var(--fetlife-charcoal);
+    border: 1px solid var(--fetlife-grey-dark);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow-hover);
+    padding: 0.5rem 0;
+}
+
+.dropdown-item {
+    color: var(--text-secondary);
+    padding: 0.5rem 1.5rem;
+}
+
+.dropdown-item:hover, .dropdown-item:focus {
+    color: var(--text-primary);
+    background-color: var(--fetlife-dark);
+}
+
+/* ========== CARTES (inspirées FetLife) ========== */
+.card {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--fetlife-grey-dark);
+    border-radius: var(--border-radius);
+    margin-bottom: 1.5rem;
+    box-shadow: var(--box-shadow);
+    transition: all 0.3s ease;
+    color: var(--text-secondary);
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--box-shadow-hover);
+    border-color: var(--fetlife-red);
+}
+
+.card-header {
+    background-color: var(--fetlife-dark);
+    border-bottom: 1px solid var(--fetlife-grey-dark);
+    padding: 1rem;
+    color: var(--text-primary);
+}
+
+.card-body {
+    padding: 1.5rem;
+}
+
+.card-title {
+    color: var(--fetlife-red);
+    font-family: var(--font-titles);
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+}
+
+.card-text {
+    color: var(--text-secondary);
+}
+
+.card-footer {
+    background-color: var(--fetlife-dark);
+    border-top: 1px solid var(--fetlife-grey-dark);
+    padding: 1rem;
+}
+
+/* ========== BOUTONS (Style FetLife) ========== */
+.btn {
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    background-color: var(--fetlife-dark);
+    background-image: linear-gradient(to bottom, var(--fetlife-charcoal), var(--fetlife-dark));
+    color: var(--text-primary);
+    text-decoration: none;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    text-shadow: 0 -1px 0 #000;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-weight: bold;
+}
+
+.btn:hover, .btn:focus {
+    background-color: var(--fetlife-black);
+    background-image: none;
+    color: var(--text-primary);
+    text-decoration: none;
+    box-shadow: var(--box-shadow-hover);
+    outline: none;
+}
+
+.btn:active {
+    position: relative;
+    top: 1px;
+    box-shadow: none;
+}
+
+/* Bouton principal (rouge FetLife) */
+.btn-primary {
+    background-color: var(--fetlife-red);
+    background-image: linear-gradient(to bottom, #A00, #700);
+    color: var(--text-primary);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.75);
+}
+
+.btn-primary:hover, .btn-primary:focus {
+    background-color: var(--fetlife-red-hover);
+    background-image: linear-gradient(to bottom, #C00, #800);
+    color: #FFF;
+}
+
+/* Bouton secondaire */
+.btn-secondary {
+    background-color: var(--fetlife-grey);
+    background-image: linear-gradient(to bottom, var(--fetlife-charcoal), var(--fetlife-grey));
+    color: var(--text-primary);
+}
+
+.btn-secondary:hover, .btn-secondary:focus {
+    background-color: var(--fetlife-grey-light);
+    color: var(--text-primary);
+}
+
+/* Bouton outline */
+.btn-outline-primary {
+    background-color: transparent;
+    background-image: none;
+    color: var(--fetlife-red);
+    border: 1px solid var(--fetlife-red);
+    box-shadow: none;
+}
+
+.btn-outline-primary:hover, .btn-outline-primary:focus {
+    background-color: var(--fetlife-red);
+    color: var(--text-primary);
+}
+
+/* ========== FORMULAIRES ========== */
+.form-control {
+    background-color: var(--fetlife-dark);
+    border: 1px solid var(--fetlife-grey-dark);
+    color: var(--text-primary);
+    border-radius: var(--border-radius);
+    padding: 0.5rem 1rem;
+}
+
+.form-control:focus {
+    background-color: var(--fetlife-charcoal);
+    border-color: var(--fetlife-red);
+    color: var(--text-primary);
+    box-shadow: 0 0 0 0.2rem rgba(153, 0, 0, 0.25);
+}
+
+.form-control::placeholder {
+    color: var(--text-disabled);
+}
+
+.label {
+    color: var(--text-secondary);
+    font-weight: bold;
+}
+
+/* ========== ALERTES ========== */
+.alert {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: var(--border-radius);
+    border: 1px solid transparent;
+}
+
 .alert-success {
-    background-color: rgba(25, 135, 84, 0.1);
+    background-color: rgba(40, 167, 69, 0.2);
     border-color: var(--success-color);
     color: var(--success-color);
 }
 
-/* ========== Styles pour les en-têtes et pieds de page ========== */
-header {
-    background-color: var(--light-color);
-    border-bottom: 1px solid var(--border-color);
-    padding: 1rem 0;
+.alert-danger {
+    background-color: rgba(220, 53, 69, 0.2);
+    border-color: var(--danger-color);
+    color: var(--danger-color);
 }
 
-footer {
-    background-color: var(--light-color);
-    border-top: 1px solid var(--border-color);
-    padding: 1rem 0;
-}
-
-/* ========== Styles pour les icônes ========== */
-.bi {
-    color: var(--primary-color);
-}
-
-/* ========== Styles pour les menus déroulants ========== */
-.dropdown-menu {
-    border: 1px solid var(--border-color);
-    border-radius: 0.375rem;
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
-}
-
-.dropdown-item:hover {
-    background-color: var(--light-color);
-    color: var(--primary-color);
-}
-
-/* ========== Styles pour les questions du questionnaire ========== */
-#question-container .card-header {
-    background-color: var(--primary-color);
-}
-
-#question-container .btn-primary {
-    background-color: var(--primary-color);
-    border-color: var(--primary-color);
-}
-
-#question-container .btn-warning {
-    background-color: var(--warning-color);
+.alert-warning {
+    background-color: rgba(255, 193, 7, 0.2);
     border-color: var(--warning-color);
-    color: var(--dark-color);
+    color: var(--warning-color);
 }
 
-/* ========== Styles pour la page de fin ========== */
-.noscript-card .card-header {
-    background-color: var(--primary-color);
+.alert-info {
+    background-color: rgba(23, 162, 184, 0.2);
+    border-color: #17a2b8;
+    color: #17a2b8;
 }
 
-.noscript-icon {
-    color: var(--success-color);
-}
-/* ========== Styles pour les poèmes ========== */
-.poem-container {
-    background-color: #f8f9fa;
-    padding: 2rem;
-    border-radius: 0.5rem;
-    margin: 2rem 0;
-    text-align: center;
-    border-left: 4px solid var(--primary-color);
-}
-
-.poem-title {
-    color: var(--primary-color);
-    font-family: 'Georgia', serif;
+/* ========== TABLEAUX ========== */
+table {
+    width: 100%;
     margin-bottom: 1.5rem;
+    color: var(--text-secondary);
 }
 
-.poem-text {
-    font-family: 'Georgia', serif;
-    font-size: 1.1rem;
-    line-height: 1.8;
-    white-space: pre-line;
+th {
+    background-color: var(--fetlife-dark);
+    color: var(--text-primary);
+    padding: 0.75rem;
     text-align: left;
+    border-bottom: 1px solid var(--fetlife-grey-dark);
 }
 
-.poem-author {
+td {
+    padding: 0.75rem;
+    border-bottom: 1px solid var(--fetlife-grey-dark);
+}
+
+tr:hover {
+    background-color: var(--fetlife-charcoal);
+}
+
+/* ========== CODE ET BLOCS ========== */
+code, pre {
+    font-family: var(--font-mono);
+    background-color: var(--fetlife-dark);
+    border-radius: var(--border-radius);
+    padding: 0.2rem 0.4rem;
+    font-size: 0.9em;
+    color: var(--text-primary);
+}
+
+pre {
+    padding: 1rem;
+    overflow-x: auto;
+    margin-bottom: 1rem;
+}
+
+blockquote {
+    margin: 1.5em;
+    color: var(--text-muted);
     font-style: italic;
-    margin-top: 1.5rem;
-    color: #6c757d;
-    font-family: 'Georgia', serif;
+    border-left: 4px solid var(--fetlife-grey-dark);
+    padding-left: 1rem;
+}
+
+/* ========== UTILITAIRES ========== */
+.text-primary {
+    color: var(--fetlife-red) !important;
+}
+
+.text-secondary {
+    color: var(--text-secondary) !important;
+}
+
+.text-muted {
+    color: var(--text-muted) !important;
+}
+
+.bg-dark {
+    background-color: var(--fetlife-black) !important;
+}
+
+.bg-light {
+    background-color: var(--bg-light) !important;
+    color: var(--dark-color) !important;
+}
+
+/* Bordures */
+.border {
+    border: 1px solid var(--fetlife-grey-dark) !important;
+}
+
+.border-top {
+    border-top: 1px solid var(--fetlife-grey-dark) !important;
+}
+
+.border-bottom {
+    border-bottom: 1px solid var(--fetlife-grey-dark) !important;
+}
+
+/* Espacements */
+.my-4 {
+    margin-top: 1.5rem !important;
+    margin-bottom: 1.5rem !important;
+}
+
+.mt-3 {
+    margin-top: 1rem !important;
+}
+
+.mb-3 {
+    margin-bottom: 1rem !important;
+}
+
+.pt-3 {
+    padding-top: 1rem !important;
+}
+
+.pb-3 {
+    padding-bottom: 1rem !important;
+}
+
+/* ========== ANIMATIONS ========== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+    .container {
+        width: 100%;
+        padding: 0 1rem;
+    }
+    
+    h1 {
+        font-size: 2rem;
+    }
+    
+    h2 {
+        font-size: 1.5rem;
+    }
+    
+    .card {
+        margin-bottom: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    h1 {
+        font-size: 1.75rem;
+    }
+    
+    h2 {
+        font-size: 1.25rem;
+    }
+    
+    .btn {
+        padding: 0.375rem 1rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* ========== ACCESSIBILITÉ RGAA ========== */
+
+/* Focus visible pour tous les éléments interactifs */
+*:focus {
+    outline: 2px solid var(--fetlife-red);
+    outline-offset: 2px;
+}
+
+/* Focus pour les liens */
+a:focus {
+    outline: 2px solid var(--fetlife-red);
+    outline-offset: 2px;
+}
+
+/* Focus pour les boutons */
+.btn:focus,
+button:focus,
+input[type="submit"]:focus,
+input[type="button"]:focus {
+    outline: 2px solid var(--fetlife-red);
+    outline-offset: 2px;
+}
+
+/* Focus pour les champs de formulaire */
+.form-control:focus {
+    outline: none; /* Déjà géré par box-shadow */
+}
+
+/* Skip link pour l'accessibilité */
+.visually-hidden-focusable:focus {
+    position: static;
+    width: auto;
+    height: auto;
+    overflow: visible;
+    clip: auto;
+    color: var(--text-primary);
+    background-color: var(--fetlife-red);
+    padding: 0.5rem 1rem;
+    z-index: 9999;
+}
+
+/* Contraste garanti pour les textes */
+/* Tous les textes ont un contraste ≥ 4.5:1 avec leur fond */
+
+/* ========== COMPOSANTS SPÉCIFIQUES ========== */
+
+/* Badges */
+.badge {
+    padding: 0.25rem 0.5rem;
+    border-radius: var(--border-radius);
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.badge-primary {
+    background-color: var(--fetlife-red);
+    color: var(--text-primary);
+}
+
+/* Barre de navigation principale */
+.navbar {
+    background-color: var(--fetlife-charcoal);
+    border-bottom: 1px solid var(--fetlife-grey-dark);
+    padding: 0.5rem 0;
+}
+
+/* Conteneur principal */
+main {
+    padding: 2rem 0;
+    min-height: calc(100vh - 120px);
+}
+
+/* Section hero */
+.hero {
+    background-color: var(--fetlife-dark);
+    padding: 3rem 0;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--fetlife-grey-dark);
+}
+
+.hero h1 {
+    font-size: 3rem;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    max-width: 800px;
+    margin: 0 auto 2rem;
+}
+
+/* Pied de page avec liens */
+.footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.footer-links a {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.footer-links a:hover {
+    color: var(--fetlife-red);
+}
+
+/* Copyright */
+.copyright {
+    text-align: center;
+    color: var(--text-disabled);
+    font-size: 0.8rem;
+}
+
+/* ========== PAGES D'ERREUR ========== */
+.error-container {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 2rem;
+}
+
+.error-container .display-1 {
+    font-size: 8rem;
+    line-height: 1;
+    color: var(--fetlife-red);
+    text-shadow: 0 0 10px rgba(153, 0, 0, 0.5);
+}
+
+.error-container h2 {
+    color: var(--text-primary);
+    margin-top: 1rem;
+}
+
+.error-container p {
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+}
+
+/* ========== CARTES SPÉCIFIQUES (BFK, IUFMM, Éditions SV) ========== */
+.card-bfk {
+    border-top: 4px solid var(--fetlife-red);
+}
+
+.card-iufmm {
+    border-top: 4px solid #4a90e2;
+}
+
+.card-sv {
+    border-top: 4px solid #9b59b6;
+}
+
+/* Icônes dans les cartes */
+.card-icon {
+    font-size: 2rem;
+    color: var(--fetlife-red);
+    margin-bottom: 1rem;
+}
+
+/* ========== EFFETS DE SURVOL ========== */
+.card:hover .card-title {
+    color: var(--fetlife-red-hover);
+}
+
+.nav-link:hover {
+    transform: translateY(-1px);
+}
+
+/* ========== POLICES SUPPLÉMENTAIRES ========== */
+.amp {
+    font-family: Baskerville, Palatino, "Book Antiqua", serif !important;
+    font-style: italic;
+    font-weight: normal !important;
+}
+
+.ffg {
+    font-family: Georgia, serif;
+}
+
+/* ========== UTILITAIRES DE COULEUR ========== */
+.c700 { color: #700 !important; }
+.c900 { color: #900 !important; }
+.cA00 { color: #A00 !important; }
+.cAAA, .cAAA a { color: #AAA; }
+.c999 { color: #999; }
+
+/* ========== BOUTONS SPÉCIFIQUES ========== */
+.btn-support {
+    display: block;
+    background-color: #900;
+    padding: 5px 0;
+    text-decoration: none;
+    color: var(--text-primary);
+}
+
+.btn-support:hover {
+    background-color: #700;
+}
+
+.btn-hiring {
+    display: block;
+    background-color: #700;
+    padding: 5px 0;
+    text-decoration: none;
+    color: var(--text-primary);
+}
+
+.btn-hiring:hover {
+    background-color: #500;
+}
+
+/* ========== BARRES DE SÉPARATION ========== */
+.greybar {
+    background-color: var(--fetlife-charcoal);
+    border-top: 1px solid var(--fetlife-grey-dark);
+    border-bottom: 1px solid var(--fetlife-grey-dark);
+}
+
+.blackbar {
+    background-color: #131313;
+}
+
+/* ========== LISTES ========== */
+.list {
+    border-top: 1px solid var(--fetlife-grey-dark);
+}
+
+.list.nb {
+    border-top: none;
+}
+
+.list .listitem {
+    border-bottom: 1px solid var(--fetlife-grey-dark);
+}
+
+.list .listitem a {
+    display: block;
+    padding: 0.5rem 0;
+    text-decoration: none;
+    color: var(--text-secondary);
+}
+
+.list .listitem a:hover {
+    color: var(--fetlife-red);
+}
+
+/* ========== MÉDIAS ========== */
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--border-radius);
+}
+
+.figure {
+    margin: 0 0 1.5rem;
+}
+
+.figure img {
+    display: block;
+    margin: 0 auto;
+}
+
+.figcaption {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
 }

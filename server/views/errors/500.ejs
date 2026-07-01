@@ -11,10 +11,13 @@
           integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" 
           crossorigin="anonymous">
     
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/assets/css/style.min.css">
+    
     <!-- Favicon -->
     <link rel="icon" href="/assets/images/favicon.ico" type="image/x-icon">
 </head>
-<body>
+<body class="bg-primary">
     <!-- Skip to main content -->
     <a href="#main-content" class="visually-hidden-focusable" style="position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden;">
         Aller au contenu principal
@@ -24,8 +27,8 @@
         <main id="main-content">
             <div class="error-container">
                 <h1 class="display-1 fw-bold text-danger" id="error-title">500</h1>
-                <h2 class="mb-4" id="error-subtitle">Erreur serveur</h2>
-                <p class="lead mb-5" id="error-desc">
+                <h2 class="mb-4 text-secondary" id="error-subtitle">Erreur serveur</h2>
+                <p class="lead mb-5 text-secondary" id="error-desc">
                     Désolé, une erreur interne est survenue. Notre équipe a été notifiée.
                 </p>
                 
@@ -33,7 +36,7 @@
                     <a href="/" class="btn btn-primary btn-lg me-md-3" aria-label="Retour à la page d'accueil">
                         Retour à l'accueil
                     </a>
-                    <button onclick="location.reload()" class="btn btn-outline-secondary btn-lg" aria-label="Réessayer de charger la page">
+                    <button onclick="location.reload()" class="btn btn-outline-primary btn-lg" aria-label="Réessayer de charger la page">
                         Réessayer
                     </button>
                 </div>
@@ -55,6 +58,10 @@
         .display-1 {
             font-size: 8rem;
             line-height: 1;
+            color: var(--danger-color) !important;
+        }
+        .text-secondary {
+            color: var(--text-secondary) !important;
         }
         .visually-hidden-focusable:focus {
             position: static;

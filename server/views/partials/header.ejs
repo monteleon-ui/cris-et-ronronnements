@@ -1,16 +1,16 @@
-<header class="bg-light py-3 mb-4 border-bottom">
+<header class="bg-secondary">
     <div class="container">
         <!-- Titre avec rôle ARIA et id pour référence -->
-        <h1 class="text-center" id="site-title">Cris et Ronronnements</h1>
+        <h1 class="text-center text-primary" id="site-title">Cris et Ronronnements</h1>
         
         <!-- Navigation avec rôle ARIA et label -->
-        <nav class="nav justify-content-center" role="navigation" aria-label="Menu principal">
-            <a class="nav-link" href="/">Accueil</a>
+        <nav class="nav justify-content-center mt-3" role="navigation" aria-label="Menu principal">
+            <a class="nav-link text-secondary" href="/">Accueil</a>
             
             <!-- Menu déroulant pour "Projet BFK" -->
             <div class="dropdown">
                 <button 
-                    class="btn btn-link nav-link dropdown-toggle" 
+                    class="btn btn-link nav-link dropdown-toggle text-secondary" 
                     type="button" 
                     id="bfkoDropdown" 
                     data-bs-toggle="dropdown" 
@@ -21,17 +21,17 @@
                     Projet BFK
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="bfkoDropdown">
-                    <li><a class="dropdown-item" href="/bfk/information">Information</a></li>
-                    <li><a class="dropdown-item" href="/bfk/formation">Formation</a></li>
-                    <li><a class="dropdown-item" href="/bfk/questionnaire">Questionnaire</a></li>
+                    <li><a class="dropdown-item text-secondary" href="/bfk/information">Information</a></li>
+                    <li><a class="dropdown-item text-secondary" href="/bfk/formation">Formation</a></li>
+                    <li><a class="dropdown-item text-secondary" href="/bfk/questionnaire">Questionnaire</a></li>
                 </ul>
             </div>
             
             <!-- Lien direct vers "Rêveries" -->
-            <a class="nav-link" href="/sv_edition">Rêveries</a>
+            <a class="nav-link text-secondary" href="/sv_edition">Rêveries</a>
             
             <!-- Lien direct vers IUFMM -->
-            <a class="nav-link" href="/iufmm">IUFMM</a>
+            <a class="nav-link text-secondary" href="/iufmm">IUFMM</a>
         </nav>
     </div>
 </header>
