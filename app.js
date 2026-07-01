@@ -1,16 +1,12 @@
-// app.js - Serveur Express avec EJS et Contrôle Parental
+// app.js - Serveur Express avec EJS
 const express = require('express');
 const path = require('path');
-const cookieParser = require('cookie-parser');
 
 const app = express();
 
 // Configurer EJS comme moteur de templates
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'server/views'));
-
-// Middleware pour parser les cookies
-app.use(cookieParser());
 
 // Middleware pour parser le body des requêtes POST
 app.use(express.json());
