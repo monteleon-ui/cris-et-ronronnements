@@ -1,8 +1,10 @@
-// app.js - Serveur Express avec EJS
+// app.js - Serveur Express avec EJS et HTTPS local
 const express = require('express');
 const path = require('path');
 const helmet = require('helmet');
 const morgan = require('morgan');
+const https = require('https');
+const fs = require('fs');
 
 const app = express();
 
@@ -52,7 +54,22 @@ app.use((err, req, res, next) => {
 
 // ========== SERVER START ========== //
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
+
+// Configuration HTTPS pour le développement local
+const options = {
+  key: fs.readFileSync(path.join(__dirname, 'localhost+2-key.pem')),
+  cert: fs.readFileSync(path.join(__dirname, 'localhost+2.pem'))
+};
+
+// Démarrer le serveur HTTPS en développement, HTTP en production
+if (process.env.NODE_ENV === 'production') {
+  app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
     console.log(`Chemin des fichiers statiques : ${publicPath}`);
-});
+  });
+} else {
+  https.createServer(options, app).listen(PORT, () => {
+    console.log(`Server running on https://localhost:${PORT}`);
+    console.log(`Chemin des fichiers statiques : ${publicPath}`);
+  });
+}
