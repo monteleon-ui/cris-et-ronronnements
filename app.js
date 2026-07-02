@@ -6,6 +6,8 @@ const path = require('path');
 const helmet = require('helmet');
 const morgan = require('morgan');
 const compression = require('compression');
+const rateLimit = require('express-rate-limit');
+const crypto = require('crypto');
 
 const app = express();
 
@@ -13,6 +15,11 @@ const app = express();
 const PUBLIC_PATH = process.env.PUBLIC_PATH || path.join(__dirname, 'public');
 const VIEWS_PATH = process.env.VIEWS_PATH || path.join(__dirname, 'server/views');
 const PORT = process.env.PORT || 3000;
+
+// Générer un nonce pour le CSP
+const generateNonce = () => {
+  return crypto.randomBytes(16).toString('base64');
+};
 
 // Configurer EJS comme moteur de templates
 app.set('view engine', 'ejs');
@@ -23,13 +30,29 @@ app.set('views', VIEWS_PATH);
 // Middleware de compression (réduit la taille des réponses)
 app.use(compression());
 
-// Middleware de sécurité (Helmet) avec CSP renforcé
+// Middleware de rate limiting (100 requêtes par IP toutes les 15 minutes)
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // Limite à 100 requêtes par IP
+  message: 'Trop de requêtes, veuillez réessayer plus tard.',
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+app.use(limiter);
+
+// Middleware pour ajouter un nonce à chaque requête
+app.use((req, res, next) => {
+  res.locals.nonce = generateNonce();
+  next();
+});
+
+// Middleware de sécurité (Helmet) avec CSP renforcé et nonce
 app.use(helmet({
   contentSecurityPolicy: {
     directives: {
       defaultSrc: ["'self'"],
-      scriptSrc: ["'self'", "'unsafe-inline'", "cdn.jsdelivr.net"],
-      styleSrc: ["'self'", "'unsafe-inline'", "cdn.jsdelivr.net"],
+      scriptSrc: ["'self'", (req, res) => `'nonce-${res.locals.nonce}'`],
+      styleSrc: ["'self'", "'unsafe-inline'"], // Nécessaire pour Bootstrap et les styles inline
       imgSrc: ["'self'", "data:", "https:"],
       fontSrc: ["'self'"],
       connectSrc: ["'self'"],
@@ -53,7 +76,7 @@ app.use(morgan('dev'));
 
 // Middleware pour parser le body des requêtes POST
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false })); // Désactivé extended: true pour plus de sécurité
 
 // Servir les fichiers statiques depuis /public avec cache
 app.use(express.static(PUBLIC_PATH, {
@@ -71,41 +94,22 @@ app.use(express.static(PUBLIC_PATH, {
 }));
 
 // ========== ROUTES ========== //
-app.get('/', (req, res) => {
-  res.render('pages/index', { 
-    title: 'Accueil - Cris et Ronronnements',
-    description: 'Un espace dédié à l\'exploration de soi et des autres, à travers des questionnaires, des ressources et des œuvres littéraires.'
+const routes = require('./server/routes/index');
+app.use('/', routes);
+
+// Route de santé pour la vérification de l'état du serveur
+app.get('/health', (req, res) => {
+  res.status(200).json({ 
+    status: 'OK', 
+    timestamp: new Date().toISOString(),
+    uptime: process.uptime()
   });
 });
 
 // ========== GESTION DES ERREURS ========== //
-
-// Page 404
-app.use((req, res, next) => {
-  res.status(404);
-  try {
-    res.render('errors/404', { 
-      title: '404 - Page non trouvée | Cris et Ronronnements',
-      message: 'La page que vous cherchez n\'existe pas ou a été déplacée.'
-    });
-  } catch (err) {
-    res.send('404 - Page non trouvée');
-  }
-});
-
-// Erreur serveur 500
-app.use((err, req, res, next) => {
-  console.error(`[${new Date().toISOString()}] Erreur serveur:`, err.stack);
-  res.status(500);
-  try {
-    res.render('errors/500', { 
-      title: '500 - Erreur serveur | Cris et Ronronnements',
-      message: 'Une erreur interne est survenue. Notre équipe a été notifiée.'
-    });
-  } catch (err) {
-    res.send('500 - Erreur serveur');
-  }
-});
+const { notFound, serverError } = require('./server/middlewares/errors');
+app.use(notFound);
+app.use(serverError);
 
 // ========== DÉMARRAGE DU SERVEUR ========== //
 // En local : HTTP pur (port 3000)

@@ -13,15 +13,18 @@
     "minify:html": "htmlmin public/**/*.html --output-dir public --collapse-whitespace --remove-comments",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
     "test:accessibility": "echo 'Running accessibility tests...' && npm run build",
     "clean": "rm -rf public/assets/css/style.min.css public/assets/js/config.min.js",
     "predeploy": "npm run clean && npm run build:all"
   },
   "dependencies": {
+    "bootstrap": "^5.3.2",
     "compression": "^1.7.4",
     "dotenv": "^16.4.5",
     "ejs": "^3.1.10",
     "express": "^4.22.2",
+    "express-rate-limit": "^8.5.2",
     "gray-matter": "^4.0.3",
     "helmet": "^7.1.0",
     "marked": "^18.0.5",
@@ -31,10 +34,12 @@
     "autoprefixer": "^10.4.20",
     "cssnano": "^7.0.5",
     "eslint": "^9.15.0",
+    "eslint-plugin-prettier": "^5.2.1",
     "html-minifier": "^4.0.0",
     "nodemon": "^3.1.7",
     "postcss": "^8.4.47",
     "postcss-cli": "^11.0.0",
+    "prettier": "^3.3.3",
     "terser": "^5.34.1"
   },
   "engines": {
