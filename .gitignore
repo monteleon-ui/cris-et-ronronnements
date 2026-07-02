@@ -12,6 +12,10 @@ node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+pnpm-debug.log*
+
+# Dossier logs
+logs/
 
 # Fichiers IDE
 .idea/
@@ -21,6 +25,7 @@ yarn-error.log*
 
 # Fichiers temporaires
 temp/
+tmp/
 
 # Fichiers d'environnement
 .env
@@ -40,3 +45,7 @@ coverage/
 
 # Fichiers de cache
 .cache/
+.parcel-cache/
+
+# Fichiers OS
+Thumbs.db

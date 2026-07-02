@@ -25,7 +25,8 @@
     
     <!-- Favicon -->
     <link rel="icon" href="/assets/images/favicon.ico" type="image/x-icon" loading="lazy">
-    <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png" loading="lazy">
+    <link rel="icon" href="/assets/images/favicon.webp" type="image/webp" loading="lazy">
+    <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png" sizes="180x180" loading="lazy">
     
     <!-- Preload pour les ressources critiques -->
     <link rel="preload" href="/assets/bootstrap/css/bootstrap.min.css" as="style">
@@ -40,7 +41,7 @@
     <link rel="stylesheet" href="/assets/css/style.min.css">
     
     <!-- Microdonnées globales (Organization + WebSite) -->
-    <script type="application/ld+json">
+    <script type="application/ld+json" nonce="<%= nonce %>">
     {
       "@context": "https://schema.org",
       "@type": "Organization",
@@ -63,12 +64,12 @@
     
     <!-- Message pour les visiteurs sans JavaScript -->
     <noscript>
-        <style>
+        <style nonce="<%= nonce %>">
             .noscript-message {
                 padding: 20px;
                 background-color: #fff3cd;
                 border: 1px solid #ffc107;
-                color: #856404;
+                color: #664d00;
                 text-align: center;
                 margin: 0;
             }
@@ -94,7 +95,7 @@
     
     <!-- Contenu principal avec rôle ARIA -->
     <main id="main-content" role="main">
-        <%- body || '' %>
+        <%- body %>
     </main>
     
     <!-- Pied de page avec rôle ARIA -->

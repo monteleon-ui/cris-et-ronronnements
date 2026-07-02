@@ -1,8 +1,17 @@
 module.exports = {
   plugins: [
-    require('autoprefixer'),
+    require('autoprefixer')({
+      overrideBrowserslist: ['> 1%', 'last 2 versions'],
+    }),
     require('cssnano')({
-      preset: 'default',
+      preset: [
+        'default',
+        {
+          discardComments: { removeAll: true },
+          minifyFontValues: { removeQuotes: false },
+          minifySelectors: true,
+        },
+      ],
     })
   ]
 };

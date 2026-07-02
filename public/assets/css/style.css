@@ -1,50 +1,5 @@
 /* ========== Variables CSS pour les couleurs (Conformes RGAA) ========== */
-:root {
-    /* Couleurs principales (contraste vérifié : 4.5:1 minimum sur fond blanc) */
-    --primary-color: #0056b3;       /* Bleu accessible (contraste 7.5:1 sur blanc) */
-    --primary-light: #66a3ff;      /* Bleu clair pour les survols */
-    --primary-dark: #003d7a;       /* Bleu foncé pour les survols */
-    
-    /* Couleurs secondaires */
-    --secondary-color: #6c757d;     /* Gris (contraste 4.5:1 sur blanc) */
-    --secondary-light: #a0a5a9;    /* Gris clair */
-    --secondary-dark: #495057;     /* Gris foncé */
-    
-    /* Couleurs sémantiques */
-    --success-color: #198754;       /* Vert (contraste 6.2:1 sur blanc) */
-    --warning-color: #ffc107;       /* Jaune (contraste 3.0:1 sur blanc, à utiliser sur fond sombre) */
-    --danger-color: #dc3545;        /* Rouge (contraste 5.1:1 sur blanc) */
-    
-    /* Couleurs de fond et texte */
-    --light-color: #ffffff;        /* Blanc (fond) */
-    --dark-color: #212529;         /* Gris foncé (texte, contraste 21:1 sur blanc) */
-    --text-color: #212529;         /* Couleur du texte par défaut */
-    --text-light: #6c757d;         /* Texte secondaire */
-    
-    /* Couleurs des bordures */
-    --border-color: #dee2e6;       /* Gris clair pour les bordures */
-    --border-dark: #adb5bd;        /* Gris moyen pour les bordures */
-    
-    /* Couleurs pour les liens */
-    --link-color: var(--primary-color);
-    --link-hover: var(--primary-dark);
-    
-    /* Couleurs pour les cartes */
-    --card-bg: #ffffff;            /* Fond des cartes */
-    --card-border: var(--border-color);
-    
-    /* Couleurs pour les boutons */
-    --btn-primary-bg: var(--primary-color);
-    --btn-primary-border: var(--primary-color);
-    --btn-primary-hover-bg: var(--primary-dark);
-    --btn-primary-hover-border: var(--primary-dark);
-    
-    --btn-secondary-bg: transparent;
-    --btn-secondary-border: var(--secondary-color);
-    --btn-secondary-color: var(--secondary-color);
-    --btn-secondary-hover-bg: var(--secondary-color);
-    --btn-secondary-hover-color: var(--light-color);
-}
+@import url('variables.css');
 
 /* ========== Réinitialisation des styles de base ========== */
 * {
@@ -91,7 +46,7 @@ body {
     padding: 1rem 1.5rem;
 }
 
-/* ========== Styles pour les boutons ========== */
+/* ========== Styles pour les boutons (complémentaires à Bootstrap) ========== */
 .btn {
     border-radius: 0.375rem;
     font-weight: 500;
@@ -99,44 +54,14 @@ body {
     transition: background-color 0.2s, border-color 0.2s, color 0.2s;
 }
 
-.btn-primary {
-    background-color: var(--btn-primary-bg);
-    border-color: var(--btn-primary-border);
-    color: var(--light-color);
-}
-
-.btn-primary:hover {
-    background-color: var(--btn-primary-hover-bg);
-    border-color: var(--btn-primary-hover-border);
-    color: var(--light-color);
-}
-
 .btn-primary:focus {
     box-shadow: 0 0 0 0.25rem rgba(0, 86, 179, 0.5);
-}
-
-.btn-secondary {
-    background-color: var(--btn-secondary-bg);
-    border-color: var(--btn-secondary-border);
-    color: var(--btn-secondary-color);
 }
 
 .btn-secondary:hover {
     background-color: var(--btn-secondary-hover-bg);
     border-color: var(--btn-secondary-hover-bg);
     color: var(--btn-secondary-hover-color);
-}
-
-.btn-outline-secondary {
-    color: var(--secondary-color);
-    border-color: var(--secondary-color);
-    background-color: transparent;
-}
-
-.btn-outline-secondary:hover {
-    background-color: var(--secondary-color);
-    color: var(--light-color);
-    border-color: var(--secondary-color);
 }
 
 .btn-outline-secondary:focus {
@@ -381,7 +306,7 @@ p {
     padding: 1rem;
     background-color: #fff3cd;
     border: 1px solid #ffc107;
-    color: #856404;
+    color: #664d00;
     text-align: center;
     margin: 0;
     border-radius: 0.375rem;
@@ -562,4 +487,15 @@ blockquote footer {
     padding: 0.25rem 0.5rem;
     font-size: 0.75rem;
     font-weight: 500;
+}
+
+/* ========== Styles pour les erreurs ========== */
+.error-container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.display-1 {
+    font-size: 8rem;
+    line-height: 1;
 }

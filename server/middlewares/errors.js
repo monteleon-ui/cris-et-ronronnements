@@ -7,10 +7,12 @@ const notFound = (req, res, next) => {
     res.render('errors/404', {
       title: '404 - Page non trouvée | Cris et Ronronnements',
       message: 'La page que vous cherchez n\'existe pas ou a été déplacée.',
-      nonce: res.locals.nonce
+      nonce: res.locals.nonce,
+      currentYear: res.locals.currentYear
     });
   } catch (err) {
-    res.send('404 - Page non trouvée');
+    console.error('[404] Erreur de rendu:', err);
+    res.status(500).send('Erreur serveur lors de l\'affichage de la page 404');
   }
 };
 
@@ -22,9 +24,11 @@ const serverError = (err, req, res, next) => {
     res.render('errors/500', {
       title: '500 - Erreur serveur | Cris et Ronronnements',
       message: 'Une erreur interne est survenue. Notre équipe a été notifiée.',
-      nonce: res.locals.nonce
+      nonce: res.locals.nonce,
+      currentYear: res.locals.currentYear
     });
   } catch (err) {
+    console.error('[500] Erreur de rendu:', err);
     res.send('500 - Erreur serveur');
   }
 };

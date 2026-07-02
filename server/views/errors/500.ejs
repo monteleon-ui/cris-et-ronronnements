@@ -1,28 +1,10 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Erreur serveur - Cris et Ronronnements">
-    <title><%= title || '500 - Erreur serveur | Cris et Ronronnements' %></title>
-    
-    <!-- Favicon -->
-    <link rel="icon" href="/assets/images/favicon.ico" type="image/x-icon" loading="lazy">
-    
-    <!-- Bootstrap 5 local -->
-    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    
-    <!-- CSP : script inline autorisé uniquement avec nonce -->
-    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'nonce-<%= nonce %>'">
-</head>
-<body>
-    <!-- Skip to main content -->
-    <a href="#main-content" class="visually-hidden-focusable" style="position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden;">
-        Aller au contenu principal
-    </a>
-    
-    <div class="container text-center my-5" role="main" aria-labelledby="error-title">
-        <main id="main-content">
+<%- include('../layouts/main', {
+    title: '500 - Erreur serveur | Cris et Ronronnements',
+    metaDescription: 'Une erreur interne est survenue. Notre équipe a été notifiée.',
+    metaKeywords: '500, erreur serveur, erreur interne, problème technique',
+    canonicalUrl: '/500',
+    body: `
+        <div class="container text-center my-5" role="main" aria-labelledby="error-title">
             <div class="error-container">
                 <h1 class="display-1 fw-bold text-danger" id="error-title">500</h1>
                 <h2 class="mb-4" id="error-subtitle">Erreur serveur</h2>
@@ -45,28 +27,6 @@
                     </div>
                 </div>
             </div>
-        </main>
-    </div>
-
-    <style nonce="<%= nonce %>">
-        .error-container {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        .display-1 {
-            font-size: 8rem;
-            line-height: 1;
-        }
-        .visually-hidden-focusable:focus {
-            position: static;
-            width: auto;
-            height: auto;
-            overflow: visible;
-            clip: auto;
-        }
-    </style>
-    
-    <!-- Bootstrap JS local -->
-    <script src="/assets/bootstrap/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-</body>
-</html>
+        </div>
+    `
+}) %>

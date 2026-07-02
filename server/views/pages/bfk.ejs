@@ -1,0 +1,55 @@
+<%- include('../layouts/main', {
+    title: 'Projet BFK - Cris et Ronronnements',
+    metaDescription: 'Découvrez le projet BFK : BDSM, Fetish, Kink et plus encore.',
+    metaKeywords: 'BFK, BDSM, Fetish, Kink, questionnaire, exploration',
+    canonicalUrl: '/bfk',
+    body: `
+        <div class="container my-5">
+            <section aria-labelledby="bfk-heading">
+                <h1 id="bfk-heading" class="mb-4">Projet BFK</h1>
+                <p class="lead">
+                    BDSM, Fetish, Kink et plus encore. Un espace dédié à l'exploration de vos préférences 
+                    à travers des questionnaires détaillés et des ressources adaptées.
+                </p>
+                
+                <div class="row g-4 mt-4">
+                    <div class="col-md-4">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h2 class="card-title h5">Information</h2>
+                                <p class="card-text">En savoir plus sur le projet BFK, ses objectifs et sa méthodologie.</p>
+                            </div>
+                            <div class="card-footer bg-transparent">
+                                <a href="/bfk/information" class="btn btn-primary" aria-label="Lire les informations sur le projet BFK">En savoir plus</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h2 class="card-title h5">Formation</h2>
+                                <p class="card-text">Des formations pour approfondir vos connaissances et compétences dans le domaine.</p>
+                            </div>
+                            <div class="card-footer bg-transparent">
+                                <a href="/bfk/formation" class="btn btn-primary" aria-label="Voir les formations disponibles">Voir les formations</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h2 class="card-title h5">Questionnaire</h2>
+                                <p class="card-text">Un questionnaire complet pour explorer vos préférences et affinités.</p>
+                            </div>
+                            <div class="card-footer bg-transparent">
+                                <a href="/bfk/questionnaire" class="btn btn-primary" aria-label="Commencer le questionnaire BFK">Commencer</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    `
+}) %>

@@ -7,6 +7,7 @@ module.exports = {
   extends: [
     'eslint:recommended',
     'plugin:prettier/recommended',
+    'plugin:node/recommended',
   ],
   parserOptions: {
     ecmaVersion: 'latest',
@@ -27,6 +28,11 @@ module.exports = {
     'prefer-const': 'error',
     'prefer-arrow-callback': 'error',
     
+    // Node.js
+    'node/no-unsupported-features/es-syntax': ['error', { ignores: ['modules'] }],
+    'node/no-missing-require': 'error',
+    'node/no-deprecated-api': 'warn',
+    
     // Style
     'indent': ['error', 2],
     'quotes': ['error', 'single'],
@@ -40,14 +46,10 @@ module.exports = {
     'space-infix-ops': 'error',
     'key-spacing': ['error', { beforeColon: false, afterColon: true }],
     
-    // Node.js et Express
+    // Express
     'require-await': 'error',
     'no-path-concat': 'error',
     'no-process-exit': 'warn',
-    
-    // Accessibilité (RGAA)
-    'jsx-a11y/alt-text': 'off', // Désactivé car nous n'utilisons pas JSX
-    'jsx-a11y/anchor-is-valid': 'off',
   },
   overrides: [
     {

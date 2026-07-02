@@ -1,5 +1,8 @@
 // app.js - Serveur Express avec EJS
-require('dotenv').config();
+require('dotenv-safe').config({
+  example: '.env.example',
+  allowEmptyValues: false,
+});
 
 const express = require('express');
 const path = require('path');
@@ -8,6 +11,7 @@ const morgan = require('morgan');
 const compression = require('compression');
 const rateLimit = require('express-rate-limit');
 const crypto = require('crypto');
+const fs = require('fs');
 
 const app = express();
 
@@ -15,6 +19,9 @@ const app = express();
 const PUBLIC_PATH = process.env.PUBLIC_PATH || path.join(__dirname, 'public');
 const VIEWS_PATH = process.env.VIEWS_PATH || path.join(__dirname, 'server/views');
 const PORT = process.env.PORT || 3000;
+
+// Désactiver X-Powered-By pour la sécurité
+app.disable('x-powered-by');
 
 // Générer un nonce pour le CSP
 const generateNonce = () => {
@@ -46,6 +53,12 @@ app.use((req, res, next) => {
   next();
 });
 
+// Middleware pour ajouter l'année actuelle
+app.use((req, res, next) => {
+  res.locals.currentYear = new Date().getFullYear();
+  next();
+});
+
 // Middleware de sécurité (Helmet) avec CSP renforcé et nonce
 app.use(helmet({
   contentSecurityPolicy: {
@@ -72,22 +85,34 @@ app.use(helmet({
 }));
 
 // Middleware de logging (Morgan)
+// Logger dans un fichier en production
+const accessLogStream = fs.createWriteStream(
+  path.join(__dirname, 'logs/access.log'),
+  { flags: 'a' }
+);
+app.use(morgan('combined', { stream: accessLogStream }));
 app.use(morgan('dev'));
 
 // Middleware pour parser le body des requêtes POST
 app.use(express.json());
-app.use(express.urlencoded({ extended: false })); // Désactivé extended: true pour plus de sécurité
+app.use(express.urlencoded({
+  extended: false,
+  limit: '10kb',
+  parameterLimit: 100
+}));
 
 // Servir les fichiers statiques depuis /public avec cache
 app.use(express.static(PUBLIC_PATH, {
   maxAge: '1y', // Cache pour 1 an
+  etag: true,
+  lastModified: true,
   setHeaders: (res, filePath) => {
     // Ne pas mettre en cache les fichiers HTML
     if (filePath.endsWith('.html')) {
       res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
     }
     // Mettre en cache les assets statiques
-    if (filePath.match(/\.(css|js|png|jpg|jpeg|gif|ico|svg|woff2?)$/)) {
+    if (filePath.match(/\.(css|js|png|jpg|jpeg|gif|ico|svg|woff2?|webp)$/)) {
       res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
     }
   }
