@@ -1,8 +1,12 @@
 // app.js - Serveur Express avec EJS
-require('dotenv-safe').config({
-  example: '.env.example',
-  allowEmptyValues: false,
-});
+if (process.env.NODE_ENV === 'production') {
+  require('dotenv-safe').config({
+    example: '.env.example',
+    allowEmptyValues: false,
+  });
+} else {
+  require('dotenv').config(); // En dev, on utilise dotenv classique pour éviter les erreurs
+}
 
 const express = require('express');
 const path = require('path');
@@ -18,7 +22,8 @@ const app = express();
 // ========== CONFIGURATION ========== //
 const PUBLIC_PATH = process.env.PUBLIC_PATH || path.join(__dirname, 'public');
 const VIEWS_PATH = process.env.VIEWS_PATH || path.join(__dirname, 'server/views');
-const PORT = process.env.PORT || 3000;
+// FORCER le port 3005 en développement pour éviter les conflits
+const PORT = process.env.NODE_ENV === 'production' ? process.env.PORT : 3005;
 
 // Désactiver X-Powered-By pour la sécurité
 app.disable('x-powered-by');
@@ -84,13 +89,7 @@ app.use(helmet({
   referrerPolicy: { policy: 'same-origin' }
 }));
 
-// Middleware de logging (Morgan)
-// Logger dans un fichier en production
-const accessLogStream = fs.createWriteStream(
-  path.join(__dirname, 'logs/access.log'),
-  { flags: 'a' }
-);
-app.use(morgan('combined', { stream: accessLogStream }));
+// Middleware de logging (Morgan) - En dev, on utilise uniquement la console
 app.use(morgan('dev'));
 
 // Middleware pour parser le body des requêtes POST
@@ -137,13 +136,33 @@ app.use(notFound);
 app.use(serverError);
 
 // ========== DÉMARRAGE DU SERVEUR ========== //
-// En local : HTTP pur (port 3000)
+// En local : HTTP pur (port 3005)
 // En production (PlanetHoster) : HTTPS géré par Passenger
-app.listen(PORT, () => {
+// Créer le dossier logs/ pour la production
+const logsDir = path.join(__dirname, 'logs');
+if (!fs.existsSync(logsDir)) {
+  fs.mkdirSync(logsDir, { recursive: true });
+}
+
+const server = app.listen(PORT, () => {
   console.log(`✅ Server running on http://localhost:${PORT}`);
   console.log(`📁 Chemin des fichiers statiques : ${PUBLIC_PATH}`);
   console.log(`📁 Chemin des vues : ${VIEWS_PATH}`);
   console.log(`🌍 Environnement : ${process.env.NODE_ENV || 'development'}`);
+});
+
+// Gérer les erreurs du serveur (ex: EADDRINUSE)
+server.on('error', (err) => {
+  if (err.code === 'EADDRINUSE') {
+    console.error(`❌ Port ${PORT} est déjà utilisé. Essayez un autre port.`);
+    console.error(`   Solution :`);
+    console.error(`   1. Tuez le processus actuel : lsof -i :${PORT} | awk '{print $2}' | xargs kill -9`);
+    console.error(`   2. Changez le port dans .env ou app.js`);
+    process.exit(1);
+  } else {
+    console.error(`❌ Erreur du serveur :`, err);
+    process.exit(1);
+  }
 });
 
 module.exports = app;
